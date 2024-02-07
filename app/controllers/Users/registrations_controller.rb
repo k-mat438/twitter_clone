@@ -8,11 +8,14 @@ module Users
     # GET /resource/sign_up
 
     # POST /resource
+    def create
+    end
 
     # GET /resource/edit
 
     # PUT /resource
-
+    def update
+    end
     # DELETE /resource
 
     # GET /resource/cancel
