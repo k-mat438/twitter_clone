@@ -7,8 +7,13 @@ module Users
     # GET /resource/sign_in
 
     # POST /resource/sign_in
-
+    def create
+      super
+      create_internal
+    end
     # DELETE /resource/sign_out
+
+    def create_internal; end
 
     protected
 
