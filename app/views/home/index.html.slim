@@ -1,7 +1,8 @@
 
 .container-fluid.my-5
+  = render "devise/shared/notice_messages"
   .row.justify-content-center.g-5.mt-5
-    .row.col-3.bg-secondary
+    .row.col-3
       nav
         .mb-3.d-flex.fs-4
           = link_to root_path, class:'text-light'  do
@@ -58,9 +59,33 @@
           = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }
         .row.fs-4
           div
+            = "id: #{current_user.id}"
             = "name: #{current_user.name }"
     .row.col-6.text-center.bg-success
       p.mb-0.ps-3.pt-1 真ん中、ポスト一覧
       p.mb-0.ps-3.pt-1 Find me in app/views/home/index.html.slim
     .row.col-3.text-center.bg-info
       p.mb-0.ps-3.pt-1 右、なんか一覧
+      .card.bg-secondary
+        .card-body
+          h5.card-title
+            | What's happening
+          ul.list-group
+            li.list-group-item.bg-secondary.text-light.text-start
+              | ABC
+            li.list-group-item.bg-secondary.text-light.text-start
+              | DE
+            li.list-group-item.bg-secondary.text-light.text-start
+              | FG
+            li.list-group-item.bg-secondary.text-light.text-start
+              | あ
+            li.list-group-item.bg-secondary.text-light.text-start
+              | い
+            li.list-group-item.bg-secondary.text-light.text-start
+              | う
+            li.list-group-item.bg-secondary.text-light.text-start
+              | え
+      p aa
+      p aa
+      p aa
+      p aa

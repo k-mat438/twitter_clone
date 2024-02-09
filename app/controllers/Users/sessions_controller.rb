@@ -9,11 +9,9 @@ module Users
     # POST /resource/sign_in
     def create
       super
-      create_internal
+      flash[:notice] = "#{current_user.name}でログインしました"
     end
     # DELETE /resource/sign_out
-
-    def create_internal; end
 
     protected
 

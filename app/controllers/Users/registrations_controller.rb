@@ -10,14 +10,14 @@ module Users
     # POST /resource
     def create
       super
-      create_internal
+      flash[:notice] = '新規登録しました'
     end
     # GET /resource/edit
 
     # PUT /resource
     def update
       super
-      update_internal
+      flash[:notice] = '更新しました'
     end
     # DELETE /resource
 
@@ -26,10 +26,6 @@ module Users
     # in to be expired now. This is useful if the user wants to
     # cancel oauth signing in/up in the middle of the process,
     # removing all OAuth session data.
-
-    def create_internal; end
-
-    def update_internal; end
 
     protected
 
