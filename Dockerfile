@@ -13,6 +13,7 @@ RUN apt-get update -qq && \
   libpq-dev \
   postgresql-client \
   && apt-get clean \
+  && apt-get install -y vim \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /myapp

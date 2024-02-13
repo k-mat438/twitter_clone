@@ -1,0 +1,37 @@
+.container.pt-5.mb-5
+  .row.justify-content-center.pt-3
+    p.text-center X-icon画像
+    /img.col-3.mb-4.text-center[src="/assets/images/twitter-x.svg" width="72" height="72"]
+  .row.justify-content-center.px-4
+    = form_with model: @user, url: user_registration_path do |f|
+      .row.justify-content-center.col-4.mx-auto
+        h2.col-11.font-weight-normal
+          | アカウントを作成
+        = render "devise/shared/error_messages", resource: resource
+        .col-11.mb-4
+          = f.text_field :name, autofocus: true, autocomplete: "name", placeholder:'名前', class:'w-100 form-control'
+        .col-11.mb-4
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:'メール', class:'w-100 form-control'
+        .col-11.mb-4
+          = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:'電話番号', class:'w-100 form-control'
+        .col-11.mb-4
+          = f.label '生年月日' ,class:"form-label"
+          p
+            | この情報は公開されません。このアカウントをビジネス、ペットなどに使う場合でも、ご自身の年齢を確認してください。
+          = f.date_select :birth, use_month_numbers: true, start_year: 1924,end_year: (Time.now.year - 10), default: Date.new(2000, 1,1), autofocus: true, autocomplete: "birth", class:'col-12',placeholder:'生年月日'
+        .col-11.mb-3
+          = f.label :password ,class:"form-label"
+          - if @minimum_password_length
+            em
+              | (
+              = @minimum_password_length
+              |  characters minimum)
+          br
+          = f.password_field :password, autocomplete: "new-password", class:'w-100 form-control'
+        .col-11.mb-4
+          = f.label :password_confirmation, class:"form-label"
+          br
+          = f.password_field :password_confirmation, autocomplete: "new-password", class:'w-100 form-control'
+        .col-11.mb-4
+          = f.submit "Sign up",class:'w-100 btn btn-light btn-lg'
+        = render "devise/shared/links"
