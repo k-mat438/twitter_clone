@@ -48,6 +48,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'html2slim'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
 
 # Use Sass to process CSS
