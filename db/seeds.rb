@@ -22,7 +22,7 @@ user1 = User.new(
   phone_number: 0o00000000,
   birth: '2000-01-01',
   password: 'hogehoge',
-  confirmed_at: Time.now
+  confirmed_at: Time.current
 )
 user1.image.attach(io: File.open(Rails.root.join('app/assets/images/blue_bird.png')), filename: 'blue_bird.png')
 user1.save!
@@ -33,7 +33,7 @@ user2 = User.new(
   phone_number: 111_111_111,
   birth: '2000-01-01',
   password: 'hogehoge',
-  confirmed_at: Time.now
+  confirmed_at: Time.current
 )
 user2.image.attach(io: File.open(Rails.root.join('app/assets/images/anonymous.png')), filename: 'anonymous.png')
 user2.save!
@@ -44,7 +44,7 @@ user3 = User.new(
   phone_number: 0o11111111,
   birth: '2000-01-01',
   password: 'hogehoge',
-  confirmed_at: Time.now
+  confirmed_at: Time.current
 )
 user3.image.attach(io: File.open(Rails.root.join('app/assets/images/twitter_egg.png')), filename: 'twitter_egg.png')
 user3.save!

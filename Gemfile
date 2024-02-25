@@ -45,6 +45,7 @@ gem 'jbuilder'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'dotenv-rails'
@@ -53,7 +54,6 @@ gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
-gem 'aws-sdk-s3'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
