@@ -53,6 +53,7 @@ gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
+gem 'aws-sdk-s3'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
