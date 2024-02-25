@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'home#top'
+  get '/home', to: 'home#index'
+  get '/following', to: 'home#following'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
