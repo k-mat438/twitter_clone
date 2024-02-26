@@ -10,4 +10,5 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
     = favicon_link_tag 'twitter-x.svg'
   body.text-light.bg-black
-    = yield
+    = render "devise/shared/notice_messages"
+  = yield

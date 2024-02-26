@@ -1,0 +1,196 @@
+
+.container
+  / = render "devise/shared/notice_messages"
+  .row.justify-content-center.g-5
+    .col-3.px-3.fixed-left.mt-2
+      nav
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
+        .mb-3.d-flex.fs-4
+          = link_to home_path, class:'text-light'  do
+            svg.bi.bi-twitter-x[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Home
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Explore
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Notification
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Messages
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Bookmarks
+        / .mb-3.d-flex.fs-4
+        /   = link_to root_path, class:'text-light'  do
+        /     svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+        /       path[d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"]
+        /   = link_to home_path, class:'userList'  do
+        /     p.mb-0.ps-3.pt-1.text-light Communities
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Premium
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"]
+          p.mb-0.ps-3.pt-1 Profile 
+        .mb-3.d-flex.fs-4
+          = link_to root_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"]
+          p.mb-0.ps-3.pt-1 More
+        .mb-5.col-11
+          = button_to "Post",root_path, class:'w-75 btn btn-primary btn-lg rounded-pill'
+        .mb-5
+          br
+        .row.fs-4
+          .dropdown
+            a.d-flex.align-items-center.text-white.text-decoration-none.dropdown-toggle[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+              - if current_user.image.present?
+                = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
+              - else
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+              strong
+                = "#{current_user.id}:"
+                = current_user.name
+            ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+              li
+                a.dropdown-item[href="#"]
+                  | メッセージ...
+              li
+                a.dropdown-item[href="#"]
+                  | 設定
+              li
+                a.dropdown-item[href="#"]
+                  | プロフィール
+              li
+                hr.dropdown-divider
+              li
+                = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class:"dropdown-item"                
+    .col-3
+    .col-6.border.border-secondary.px-0
+      nav.justify-content-center
+        ul.justify-content-center.text-center.nav.d-flex.mb-2
+          li.nav-item.col-5
+            = link_to home_path, class:'h4 userList text-light' do 
+              | For you
+          li.nav-item.col-5
+            = link_to following_path, class:'h4 userList text-light' do 
+              | Following
+        article.col-12.border.border-secondary.d-flex.p-2
+          .col-1
+            - if current_user.image.present?
+              = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
+            - else
+              img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+          .col-11
+            .form-group
+                textarea#textAreaExample.form-control[rows="3" placeholder="What is happening?!" style="background: #000;"]
+            .d-flex.justify-content-between.mt-2.pt-1.pe-2
+              div.justify-content-around
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-card-image[xmlns="http://www.w3.org/2000/svg" width="15" height="18" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"]
+                    path[d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"]
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-question-circle[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"]
+                    path[d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"]
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-question-circle[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"]
+                    path[d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"]
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-question-circle[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"]
+                    path[d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"]
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-question-circle[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"]
+                    path[d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"]
+                = link_to home_path, class:'text-primary px-2'  do
+                  svg.bi.bi-question-circle[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"]
+                    path[d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"]
+              div
+                = button_to "Post",root_path, class:'btn btn-primary rounded-pill'
+        - @posts.each do |post|
+          article.col.border.border-secondary.d-flex.p-2
+            .col-1
+              = image_tag(post.user.image.variant(resize_to_fit: [40, 40]),class:"rounded-circle")
+            .col-11
+              .d-flex
+                strong.pe-4
+                  = post.user.name
+                div.text-secondary
+                  = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
+              div.mb-2
+                = post.content
+              div.d-flex.justify-content-around
+                = link_to home_path, class:'text-light'  do
+                  svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"]
+                = link_to home_path, class:'text-light'  do
+                  svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"]
+                = link_to home_path, class:'text-light'  do
+                  svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"]
+                = link_to home_path, class:'text-light'  do
+                  svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"]
+                = link_to home_path, class:'text-light'  do
+                  svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewbox="0 0 16 16"]
+                    path[d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"]
+        div.item__pagenate
+          = paginate @posts 
+    .col-3
+    .col-3.text-center.fixed-right.mt-0
+      form.form-inline.my-2.my-lg-0
+        input.form-control.mr-sm-2.mt-3.rounded-pill.mb-3 placeholder="Search"
+      .card.bg-secondary.mb-3
+        .card-body
+          h5 
+            | Subscribe to Premium
+          p.text-start Subscribe to unlock new features and if eligible, receive a share of ads revenue.
+          = button_to "Subscribe",root_path, class:'btn btn-primary d-flex align-items-start rounded-pill'
+      .card.bg-secondary
+        .card-body
+          h5.card-title
+            | What's happening
+          ul.list-group
+            li.list-group-item.bg-secondary.text-light.text-start
+              | ABC
+            li.list-group-item.bg-secondary.text-light.text-start
+              | DE
+            li.list-group-item.bg-secondary.text-light.text-start
+              | FG
+            li.list-group-item.bg-secondary.text-light.text-start
+              | あ
+            li.list-group-item.bg-secondary.text-light.text-start
+              | い
+            li.list-group-item.bg-secondary.text-light.text-start
+              | う
+            li.list-group-item.bg-secondary.text-light.text-start
+              | え

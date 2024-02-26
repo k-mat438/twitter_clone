@@ -1,0 +1,13 @@
+= render "devise/shared/bar"
+.container-fluid.mt-5
+  .row
+    .col-5.d-flex.align-items-center.justify-content-center.px-1
+      = image_tag 'new-2023-twitter-logo-x-icon-design_1017-45418.avif'
+    .col-7.px-5
+      h1.mb-5.display-2
+        | すべての話題が、ここに。
+      h3.mb-3
+        | いますぐ参加しましょう。
+      = link_to "　　Log in　　", new_user_session_path ,class:'btn btn-primary rounded-pill m-2' 
+      p.pt-3.ps-5 または
+      = link_to "　　Sign up　　", new_user_registration_path ,class:'btn btn-primary rounded-pill m-2' 
