@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_one_attached :image
+  has_one_attached :header_image
   has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,5 +25,13 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       user.skip_confirmation!
     end
+  end
+
+  def get_header_image(width, height) # 600, 200
+    unless header_image.attached?
+      file_path = Rails.root.join('app/assets/images/default_image.png')
+      header_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
+    end
+    header_image.variant(resize_to_limit: [width, height]).processed
   end
 end
