@@ -1,49 +1,60 @@
 ul.text-center.nav.d-flex.mb-2
   li.nav-item.col-1
     = link_to home_path, class:'h4 userList text-light' do 
-      svg.bi.bi-arrow-left[xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewbox="0 0 16 16"]
-        path[fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"]
+      i.bi.bi-arrow-left
   li.nav-item.col-2
-    = current_user.name
+    = @user.name
 div
-  = image_tag(current_user.get_header_image(580, 200))
-.d-flex.justify-content-between.p-2
+  - if @user.header_image.present? 
+    = image_tag(@user.header_image.variant(resize_to_fill: [580, 200]))
+  - else  
+    = image_tag(@user.get_header_image(580, 200))
+.d-flex.justify-content-end.p-2.mb-4
+  div.fixed-profile
+    - if @user.image.present?
+      = image_tag(@user.image.variant(resize_to_fill: [132, 132]),class:"rounded-circle")
+    - else
+      img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="132" height="132"]
   div
-    = link_to users_show_path do
-      - if current_user.image.present?
-        = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
-      - else
-        img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
-  div
-    = button_to "プロフィールを編集",root_path, class:'btn btn-outline-light rounded-pill'
-article
-  div 
-    = current_user.name 
-  div 
-    - if current_user.introduction.present?
-      = current_user.introduction
+    - if @user.id == current_user.id
+      = link_to "プロフィールを編集",users_profile_edit_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
+    - else
+      .mb-4.pb-3
+article.ps-3
+  .h3
+    = @user.name 
+  div.mb-2
+    - if @user.introduction.present?
+      = @user.introduction
     - else
       | ここは自己紹介文です。
       br
-      |今から書ききます
+      | あなたについて自由に書いてください
   div.d-flex.justifigy-content-start
-    div 
+    div.text-secondary.pe-2
       i.bi.bi-geo-alt
-      = current_user.location
-    div 
+      - if @user.location.present?
+        = @user.location
+      - else 
+        | 地球
+    div.text-secondary.pe-2
       i.bi.bi-link-45deg
-      - if current_user.website.present?
-        = current_user.website
+      - if @user.website.present?
+        = @user.website
       - else 
         = link_to "google.com", "https://www.google.com/"
-    div 
+    div.text-secondary
       i.bi.bi-balloon
-      = "誕生日: #{current_user.birth.strftime('%Y年%m月%d日')}"
-  div 
-    i.bi.bi-calendar3
-    = "#{current_user.created_at.strftime('%Y年%m月からTwitterを利用しています')}"
-  div.d-flex
+      = "誕生日: #{@user.birth.strftime('%Y年%m月%d日')}"
+  div.text-secondary.mb-1
+    i.bi.bi-calendar3.pe-1
+    = "#{@user.created_at.strftime('%Y年%m月からTwitterを利用しています')}"
+  div.d-flex.mb-1
     div.pe-4
-      | 3 フォロー中
+      | 3 
+      span[style="color: #6c757d;"] 
+        | フォロー中
     div 
-      | 50000 フォローワー
+      | 50000 
+      span[style="color: #6c757d;"] 
+        | フォローワー

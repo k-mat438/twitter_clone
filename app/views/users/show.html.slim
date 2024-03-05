@@ -11,25 +11,25 @@
             .userList.nav-link.text-light.active
               | ツイート
           li.nav-item.col-3
-            = link_to users_show_reposts_path, class:'userList nav-link text-light' do 
+            = link_to users_show_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
               | リツイート
           li.nav-item.col-3
-            = link_to users_show_comments_path, class:'userList nav-link text-light' do 
+            = link_to users_show_comments_path(id: @user.id), class:'userList nav-link text-light' do 
               | コメント
           li.nav-item.col-3
-            = link_to users_show_favorites_path, class:'userList nav-link text-light' do 
+            = link_to users_show_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
               | いいね
       
           article.col.border.border-secondary.d-flex.p-2
             .col-1
-              - if current_user.image.present?
-                = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
+              - if @user.image.present?
+                = image_tag(@user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
             .col-11
               .d-flex
                 strong.pe-4
-                  = current_user.name
+                  = @user.name
                 div.text-secondary
                   |  100日前
               div.mb-2.text-start

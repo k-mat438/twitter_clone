@@ -27,7 +27,7 @@ class User < ApplicationRecord
     end
   end
 
-  def get_header_image(width, height) # 600, 200
+  def get_header_image(width, height)
     unless header_image.attached?
       file_path = Rails.root.join('app/assets/images/default_image.png')
       header_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')

@@ -36,9 +36,9 @@
       = link_to home_path, class:'userList'  do
         p.mb-0.ps-3.pt-1.text-light Premium
     .mb-3.d-flex.fs-4
-      = link_to users_show_path, class:'text-light'  do
+      = link_to users_show_path(id: current_user.id), class:'text-light'  do
         i.bi.bi-person-fill
-      = link_to users_show_path, class:'userList text-light'  do
+      = link_to users_show_path(id: current_user.id), class:'userList text-light'  do
         p.mb-0.ps-3.pb-1 Profile 
     .mb-3.d-flex.fs-4
       = link_to root_path, class:'text-light'  do
@@ -52,7 +52,7 @@
       .dropdown
         a.d-flex.align-items-center.text-white.text-decoration-none.dropdown-toggle[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
           - if current_user.image.present?
-            = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
+            = image_tag(current_user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
           - else
             img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
           strong
@@ -66,7 +66,7 @@
             a.dropdown-item[href="#"]
               | 設定
           li
-            = link_to users_show_path, class:'dropdown-item'  do
+            = link_to users_show_path(id: current_user.id), class:'dropdown-item'  do
               | プロフィール
           li
             hr.dropdown-divider

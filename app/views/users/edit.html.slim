@@ -1,0 +1,31 @@
+.container.pt-5
+  .row.justify-content-center.px-4
+    = form_with model: @user, url: users_profile_edit_path(id: current_user.id) do |f|
+      .row.col-4.justify-content-center.mx-auto
+        h2.col-11.font-weight-normal.d-flex
+          = link_to users_show_path(id: @user.id), class:'userList text-light pe-2' do 
+            i.bi.bi-arrow-left[style="font-size: 25px;"]
+          | プロフィールを編集
+        .col-11.mb-3
+          = f.label '名前' ,class:"form-label"
+          = f.text_field :name, autofocus: true, autocomplete: "name", placeholder:'name', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label 'アイコン画像' ,class:"form-label"
+          = f.file_field :image, placeholder:'icon image', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label 'ヘッダー画像' ,class:"form-label"
+          = f.file_field :header_image, placeholder:'header image', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label '場所' ,class:"form-label"
+          = f.text_field :location, placeholder:'location', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label 'Website' ,class:"form-label"
+          = f.url_field :website, placeholder:'website', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label '誕生日' ,class:"form-label"
+          = f.date_field :birth, placeholder:'birth', class:'w-100 form-control'
+        .col-11.mb-3
+          = f.label '自己紹介' ,class:"form-label"
+          = f.text_area :introduction, autocomplete: "introduction", placeholder:'自己紹介', rows:"5", class:'w-100 form-control'
+        .col-11.mb-4
+          = f.submit "保存",class:'w-100 btn btn-light btn-lg'

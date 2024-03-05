@@ -15,9 +15,9 @@
               | Following
         article.col-12.border.border-secondary.d-flex.p-2
           .col-1
-            = link_to users_show_path do
+            = link_to users_show_path(id: current_user.id) do
               - if current_user.image.present?
-                = image_tag(post.user.image.variant(resize_to_fit: [32, 32]),class:"rounded-circle")
+                = image_tag(current_user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
           .col-11
@@ -42,7 +42,8 @@
         - @posts.each do |post|
           article.col.border.border-secondary.d-flex.p-2
             .col-1
-              = image_tag(post.user.image.variant(resize_to_fit: [40, 40]),class:"rounded-circle")
+              = link_to users_show_path(id: post.user.id) do
+                = image_tag(post.user.image.variant(resize_to_fit: [40, 40]),class:"rounded-circle")
             .col-11
               .d-flex
                 strong.pe-4
