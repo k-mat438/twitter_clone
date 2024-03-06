@@ -23,7 +23,7 @@
           article.col.border.border-secondary.d-flex.p-2
             .col-1
               - if @user.image.present?
-                = image_tag(@user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+                = image_tag(@user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
             .col-11
