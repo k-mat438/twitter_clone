@@ -1,21 +1,20 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def new
     @post = Post.new
   end
 
-  def show
-
-  end
+  def show; end
 
   def create
-    @post= Post.new(params_post.merge(user_id: current_user.id))
-    if @post.save
-      redirect_to home_path
-    end
+    @post = Post.new(params_post.merge(user_id: current_user.id))
+    return unless @post.save
+
+    redirect_to home_path
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

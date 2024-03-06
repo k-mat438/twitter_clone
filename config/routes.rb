@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'users/profile_edit', to: 'users#edit'
   patch 'users/profile_edit', to: 'users#update'
 
-  resources :posts, only: [:new, :show, :create, :destroy]
+  resources :posts, only: %i[new show create destroy]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   # resources :tasks

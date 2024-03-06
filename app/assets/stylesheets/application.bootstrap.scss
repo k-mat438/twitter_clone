@@ -13,12 +13,12 @@
   right: 1rem;
   z-index: 1030;
 }
-.fixed-profile{
-  position: fixed;
-  top: 10rem;
-  left: 29%;
-  z-index: 1030;
-}
+$position-values: (
+  0: 0,
+  15: 15%,
+  50: 50%,
+  100: 100%
+);
 /* ページネーションの装飾 */
 
 /* 自分で指定したdivタグ */
