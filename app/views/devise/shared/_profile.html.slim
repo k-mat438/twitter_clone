@@ -4,17 +4,17 @@ ul.text-center.nav.d-flex.mb-2
       i.bi.bi-arrow-left
   li.nav-item.col-2
     = @user.name
-div
+div.position-relative
   - if @user.header_image.present? 
     = image_tag(@user.header_image.variant(resize_to_fill: [580, 200]))
   - else  
     = image_tag(@user.get_header_image(580, 200))
-.d-flex.justify-content-end.p-2.mb-4
-  div.fixed-profile
+  div.position-absolute.top-100.start-15.translate-middle
     - if @user.image.present?
       = image_tag(@user.image.variant(resize_to_fill: [132, 132]),class:"rounded-circle")
     - else
       img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="132" height="132"]
+.d-flex.justify-content-end.p-2.mb-4  
   div
     - if @user.id == current_user.id
       = link_to "プロフィールを編集",users_profile_edit_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
