@@ -1,0 +1,33 @@
+.container.pt-5
+  .row.px-4
+    h2.col-11.font-weight-normal.d-flex.mb-5
+        = link_to home_path, class:'userList text-light pe-2' do 
+          i.bi.bi-arrow-left[style="font-size: 25px;"]
+        | 戻る
+    article.col-7.border.border-secondary.d-flex.p-2.mx-auto
+      .col-1
+        = link_to users_show_path(id: current_user.id) do
+          - if current_user.image.present?
+            = image_tag(current_user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+          - else
+            img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+      .col-11
+        = form_with model: @post, url: posts_path do |post|
+          = post.text_area :content, placeholder:'What is happening?!', rows:"5", class:'w-100 form-control text-light', style:"background: #000;"
+          .d-flex.justify-content-between.mt-2.pt-1.pe-2
+            div.justify-content-around
+              label 
+                i.bi.bi-card-image.text-primary
+                = post.file_field :post_images, style:"display: none;"
+              = link_to home_path, class:'text-primary px-2'  do
+                i.bi.bi-question-circle
+              = link_to home_path, class:'text-primary px-2'  do
+                i.bi.bi-question-circle
+              = link_to home_path, class:'text-primary px-2'  do
+                i.bi.bi-question-circle
+              = link_to home_path, class:'text-primary px-2'  do
+                i.bi.bi-question-circle
+              = link_to home_path, class:'text-primary px-2'  do
+                i.bi.bi-question-circle
+            div 
+              = post.submit "Post", class:'btn btn-primary rounded-pill'

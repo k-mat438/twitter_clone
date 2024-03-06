@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'users/show_favorites', to: 'users#show_favorites'
   get 'users/profile_edit', to: 'users#edit'
   patch 'users/profile_edit', to: 'users#update'
+
+  resources :posts, only: [:new, :show, :create, :destroy]
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   # resources :tasks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

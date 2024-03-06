@@ -1,6 +1,4 @@
-
 .container
-  / = render "devise/shared/notice_messages"
   .row.justify-content-center.g-5
     = render "devise/shared/left_sidebar"
     .col-3
@@ -13,7 +11,7 @@
           li.nav-item.col-5
             = link_to following_path, class:'h4 userList text-light' do 
               | Following
-        article.col-12.border.border-secondary.d-flex.p-2
+        article.col-12.border.border-secondary.d-flex.p-2.mx-auto
           .col-1
             = link_to users_show_path(id: current_user.id) do
               - if current_user.image.present?
@@ -21,29 +19,30 @@
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
           .col-11
-            .form-group
-                textarea#textAreaExample.form-control[rows="3" placeholder="What is happening?!" style="background: #000;"]
-            .d-flex.justify-content-between.mt-2.pt-1.pe-2
-              div.justify-content-around
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-card-image
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-question-circle
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-question-circle
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-question-circle
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-question-circle
-                = link_to home_path, class:'text-primary px-2'  do
-                  i.bi.bi-question-circle
-              div
-                = button_to "Post",root_path, class:'btn btn-primary rounded-pill'
+            = form_with model: @post, url: posts_path do |post|
+              = post.text_area :content, placeholder:'What is happening?!', rows:"5", class:'w-100 form-control text-light', style:"background: #000;"
+              .d-flex.justify-content-between.mt-2.pt-1.pe-2
+                div.justify-content-around
+                  label 
+                    i.bi.bi-card-image.text-primary
+                    = post.file_field :post_images, multiple: true, style:"display: none"
+                  = link_to home_path, class:'text-primary px-2'  do
+                    i.bi.bi-question-circle
+                  = link_to home_path, class:'text-primary px-2'  do
+                    i.bi.bi-question-circle
+                  = link_to home_path, class:'text-primary px-2'  do
+                    i.bi.bi-question-circle
+                  = link_to home_path, class:'text-primary px-2'  do
+                    i.bi.bi-question-circle
+                  = link_to home_path, class:'text-primary px-2'  do
+                    i.bi.bi-question-circle
+                div
+                  = post.submit "Post", class:'btn btn-primary rounded-pill'
         - @posts.each do |post|
           article.col.border.border-secondary.d-flex.p-2
             .col-1
               = link_to users_show_path(id: post.user.id) do
-                = image_tag(post.user.image.variant(resize_to_fit: [40, 40]),class:"rounded-circle")
+                = image_tag(post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
             .col-11
               .d-flex
                 strong.pe-4
@@ -52,6 +51,11 @@
                   = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
               div.mb-2
                 = post.content
+              div
+                - if post.post_images.present?
+                  - post.post_images.each do |post_image|
+                    = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")
+                    / = image_tag(post.post_images.variant(resize_to_fill: [100,100]))                    
               div.d-flex.justify-content-around
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-chat
