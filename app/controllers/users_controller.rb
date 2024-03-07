@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   before_action :set_target_user, only: %i[show show_reposts show_comments show_favorites edit]
   def show
-    @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
+    # @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
   end
 
   def show_reposts; end
