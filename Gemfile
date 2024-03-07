@@ -49,7 +49,6 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'dotenv-rails'
-gem 'html2slim'
 gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
@@ -70,6 +69,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'html2slim'
   gem 'htmlbeautifier'
   gem 'letter_opener_web', '~> 2.0'
   gem 'rails_best_practices'
