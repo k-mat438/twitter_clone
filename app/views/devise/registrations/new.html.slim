@@ -1,4 +1,4 @@
-= render "devise/shared/bar"
+= render "devise/shared/headbar"
 .container.pt-5.mb-5
   .row.justify-content-center.pt-3
     p.text-center X-icon画像
@@ -19,7 +19,7 @@
           = f.label '生年月日' ,class:"form-label"
           p
             | この情報は公開されません。このアカウントをビジネス、ペットなどに使う場合でも、ご自身の年齢を確認してください。
-          = f.date_select :birth, use_month_numbers: true, start_year: 1924,end_year: (Time.now.year - 10), default: Date.new(2000, 1,1), autofocus: true, autocomplete: "birth", class:'col-12',placeholder:'生年月日'
+          = f.date_field :birth, default: Date.new(2000, 1,1), autofocus: true, autocomplete: "birth", class:'col-12 form-control',placeholder:'生年月日'
         .col-11.mb-3
           = f.label :password ,class:"form-label"
           - if @minimum_password_length

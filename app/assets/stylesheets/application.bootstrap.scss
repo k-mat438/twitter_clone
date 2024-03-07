@@ -4,7 +4,7 @@
 .fixed-left{
   position: fixed;
   top: 0.1rem;
-  left: 1rem;
+  left: 2rem;
   z-index: 1030;
 }
 .fixed-right{
@@ -13,6 +13,12 @@
   right: 1rem;
   z-index: 1030;
 }
+$position-values: (
+  0: 0,
+  15: 15%,
+  50: 50%,
+  100: 100%
+);
 /* ページネーションの装飾 */
 
 /* 自分で指定したdivタグ */
@@ -49,6 +55,53 @@
   color: #84b8eb;
   padding: 10px;
 }
+.bi-chat,
+.bi-repeat,
+.bi-heart,
+.bi-justify-left,
+.bi-bookmark-plus{
+  font-size: 15px;
+}
+.bi-house-door-fill,
+bi-search,
+.bi-bell,
+.bi-envelop,
+.bi-bookmark,
+.bi-person-fill,
+.bi-three-dots{
+  font-size: 23px;
+}
+.nav-tabs-custom {
+  --bs-nav-tabs-border-width: 1px;
+  // --bs-nav-tabs-border-color: #dee2e6;
+  --bs-nav-tabs-border-radius: 0.375rem;
+  --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #dee2e6;
+  --bs-nav-tabs-link-active-color: #0d6efd;
+  --bs-nav-tabs-link-active-bg: #0d6efd;
+  --bs-nav-tabs-link-active-border-color: #0d6efd;
+  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+}
 
+.nav-tabs-custom .nav-link.active {
+  color: var(--bs-nav-tabs-link-active-color);
+  background-color: var(--bs-nav-tabs-link-active-bg);
+  border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+.nav-tabs-custom .nav-link {
+  margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));
+  background: none;
+  border: var(--bs-nav-tabs-border-width) solid transparent;
+  border-top-left-radius: var(--bs-nav-tabs-border-radius);
+  border-top-right-radius: var(--bs-nav-tabs-border-radius);
+}
+.nav-tabs-custom .nav-link:hover, .nav-tabs .nav-link:focus {
+  isolation: isolate;
+  border-color: var(--bs-nav-tabs-link-hover-border-color);
+}
+.nav-tabs-custom .nav-link.active{
+  color: var(--bs-nav-tabs-link-active-color);
+  background-color: var(--bs-nav-tabs-link-active-bg);
+  border-color: var(--bs-nav-tabs-link-active-border-color);
+}
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';

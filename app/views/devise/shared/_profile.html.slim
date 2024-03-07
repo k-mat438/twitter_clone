@@ -1,0 +1,60 @@
+ul.text-center.nav.d-flex.mb-2
+  li.nav-item.col-1
+    = link_to home_path, class:'h4 userList text-light' do 
+      i.bi.bi-arrow-left
+  li.nav-item.col-2
+    = @user.name
+div.position-relative
+  - if @user.header_image.present? 
+    = image_tag(@user.header_image.variant(resize_to_fill: [580, 200]))
+  - else  
+    = image_tag(@user.get_header_image(580, 200))
+  div.position-absolute.top-100.start-15.translate-middle
+    - if @user.image.present?
+      = image_tag(@user.image.variant(resize_to_fill: [132, 132]),class:"rounded-circle")
+    - else
+      img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="132" height="132"]
+.d-flex.justify-content-end.p-2.mb-4  
+  div
+    - if @user.id == current_user.id
+      = link_to "プロフィールを編集",users_profile_edit_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
+    - else
+      .mb-4.pb-3
+article.ps-3
+  .h3
+    = @user.name 
+  div.mb-2
+    - if @user.introduction.present?
+      = @user.introduction
+    - else
+      | ここは自己紹介文です。
+      br
+      | あなたについて自由に書いてください
+  div.d-flex.justifigy-content-start
+    div.text-secondary.pe-2
+      i.bi.bi-geo-alt
+      - if @user.location.present?
+        = @user.location
+      - else 
+        | 地球
+    div.text-secondary.pe-2
+      i.bi.bi-link-45deg
+      - if @user.website.present?
+        = @user.website
+      - else 
+        = link_to "google.com", "https://www.google.com/"
+    div.text-secondary
+      i.bi.bi-balloon
+      = "誕生日: #{@user.birth.strftime('%Y年%m月%d日')}"
+  div.text-secondary.mb-1
+    i.bi.bi-calendar3.pe-1
+    = "#{@user.created_at.strftime('%Y年%m月からTwitterを利用しています')}"
+  div.d-flex.mb-1
+    div.pe-4
+      | 3 
+      span[style="color: #6c757d;"] 
+        | フォロー中
+    div 
+      | 50000 
+      span[style="color: #6c757d;"] 
+        | フォローワー
