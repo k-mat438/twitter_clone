@@ -14,7 +14,11 @@ class PostsController < ApplicationController
     redirect_to home_path
   end
 
-  def destroy; end
+  def destroy
+    @post = Post.find(params[:id])
+    @post.delete if @post.user_id == current_user.id
+    redirect_to home_path
+  end
 
   private
 
