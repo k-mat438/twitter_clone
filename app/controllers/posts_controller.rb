@@ -8,15 +8,15 @@ class PostsController < ApplicationController
   def show; end
 
   def create
-    @post = Post.new(params_post.merge(user_id: current_user.id))
+    @post = current_user.posts.build(params_post)
     return unless @post.save
 
     redirect_to home_path
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.delete if @post.user_id == current_user.id
+    @post = current_user.posts.find(params[:id])
+    @post.delete if @post.present?
     redirect_to home_path
   end
 

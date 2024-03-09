@@ -52,11 +52,22 @@
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
             .col-11
-              .d-flex
-                strong.pe-4
-                  = post.user.name
-                div.text-secondary
-                  = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = post.user.name
+                  div.text-secondary
+                    = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
+                .dropdown
+                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                    i.bi.bi-three-dots
+                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                      li
+                        - if post.user_id == current_user.id
+                          = link_to "Delete", post_path(post.id), data: { turbo_method: :delete}, class: "dropdown-item" 
+                      li
+                        - unless post.user_id == current_user.id
+                          = link_to "follow", home_path, class: "dropdown-item" 
               div.mb-2
                 = post.content
               div
