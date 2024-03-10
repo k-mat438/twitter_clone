@@ -19,13 +19,12 @@
           li.nav-item.col-3
             = link_to users_show_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
               | いいね
-      
-          article.col.border.border-secondary.d-flex.p-2
+          article.col.d-flex.p-2
             .col-1
               - if @user.image.present?
                 = image_tag(@user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
               - else
-                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
             .col-11
               .d-flex
                 strong.pe-4
@@ -41,6 +40,48 @@
                   i.bi.bi-repeat
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-heart
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-justify-left
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-bookmark-plus
+        - @posts.each do |post|
+          article.col.border.border-secondary.d-flex.p-2
+            .col-1
+              - if post.user.image.present?
+                = image_tag(post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+              - else
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-11
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = post.user.name
+                  div.text-secondary
+                    = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
+                .dropdown
+                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                    i.bi.bi-three-dots
+                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                      li
+                        - if post.user_id == current_user.id
+                          = link_to "Delete", post_path(post.id), data: { turbo_method: :delete}, class: "dropdown-item" 
+                      li
+                        - unless post.user_id == current_user.id
+                          = link_to "follow", home_path, class: "dropdown-item" 
+              div.mb-2
+                = post.content
+              div
+                - if post.post_images.present?
+                  - post.post_images.each do |post_image|
+                    = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")
+                    / = image_tag(post.post_images.variant(resize_to_fill: [100,100]))                    
+              div.d-flex.justify-content-around
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-chat
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-repeat
+                = link_to home_path, class:'text-light'  do
+                i.bi.bi-heart
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-justify-left
                 = link_to home_path, class:'text-light'  do
