@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
   def show_reposts; end
 
-  def show_comments; end
+  def show_comments
+    @comments = Comment.where(user_id: @user.id).order('created_at DESC')
+  end
 
   def show_favorites; end
 

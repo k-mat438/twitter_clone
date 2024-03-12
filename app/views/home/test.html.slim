@@ -1,0 +1,36 @@
+form.row.row-cols-lg-auto.g-3.align-items-center
+  .col-12
+    label.visually-hidden[for="inlineFormInputGroupUsername"]
+      | Username
+    .input-group
+      .input-group-text
+        | @
+      input#inlineFormInputGroupUsername.form-control[type="text" placeholder="Username"]
+  .col-12
+    label.visually-hidden[for="inlineFormSelectPref"]
+      | Preference
+    select.select[data-mdb-select-init]
+      option[value="1"]
+        | One
+      option[value="2"]
+        | Two
+      option[value="3"]
+        | Three
+      option[value="4"]
+        | Four
+      option[value="5"]
+        | Five
+      option[value="6"]
+        | Six
+      option[value="7"]
+        | Seven
+      option[value="8"]
+        | Eight
+  .col-12
+    .form-check
+      input#inlineFormCheck.form-check-input[type="checkbox"]
+      label.form-check-label[for="inlineFormCheck"]
+        |  Remember me 
+  .col-12
+    button.btn.btn-primary[data-mdb-ripple-init type="submit"]
+      | Submit

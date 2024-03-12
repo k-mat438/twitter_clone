@@ -104,3 +104,13 @@ $position-values: (
 }
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+a.userList:hover{
+  background-color: #212529;
+}
+
+@media (min-width: 1200px) {
+  .w-xl-60 {
+    width: 60% !important;    
+  }
+}

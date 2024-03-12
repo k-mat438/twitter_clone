@@ -43,4 +43,46 @@
                     i.bi.bi-justify-left
                   = link_to home_path, class:'text-light'  do
                     i.bi.bi-bookmark-plus
+        - @comments.each do |comment|
+          article.border.border-secondary.d-flex.p-2.align-items-center.px-xl-3
+            .col-xl-1
+              = link_to users_show_path(id: comment.user.id) do
+                - if comment.user.image.present?
+                  = image_tag(comment.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-10.ms-lg-3
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = comment.user.name
+                  div.text-secondary
+                    = "#{(Date.today - comment.created_at.to_date).to_i.to_s}日前"
+                .dropdown
+                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                    i.bi.bi-three-dots
+                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                      li
+                        - if comment.user_id == current_user.id
+                          = link_to "Delete", post_comment_path(post_id: comment.post.id, id: comment.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+                      li
+                        - unless comment.user_id == current_user.id
+                          = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+              = link_to post_path(comment.post.id), style:"text-decoration: none;" do 
+                div.mb-2[style="color:#1C9BEF;"]
+                    = "Replying to #{comment.post.user.name}"
+              = link_to post_path(comment.post.id), class:'text-white',style:"text-decoration: none;" do 
+                div.mb-2
+                  = comment.comment_content
+              div.d-flex.justify-content-around
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-chat
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-repeat
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-heart
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-justify-left
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-bookmark-plus
     .col-3
