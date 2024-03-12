@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(params_comment)
-    if @comment.save
-      redirect_to post_path(@comment.post.id)
-    end
+    return unless @comment.save
+
+    redirect_to post_path(@comment.post.id)
   end
 
   def destroy
