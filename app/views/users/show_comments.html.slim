@@ -73,7 +73,7 @@
                     = "Replying to #{comment.post.user.name}"
               = link_to post_path(comment.post.id), class:'text-white',style:"text-decoration: none;" do 
                 div.mb-2
-                  = comment.comment_content
+                  = comment.content
               div.d-flex.justify-content-around
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-chat

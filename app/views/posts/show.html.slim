@@ -61,7 +61,7 @@
               - else
                 img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
             .col-7.ms-lg-5.w-xl-60
-              = comment.text_area :comment_content, placeholder:'Post your reply', rows:"3", class:'form-control text-light', style:"background: #000;"
+              = comment.text_area :content, placeholder:'Post your reply', rows:"3", class:'form-control text-light', style:"background: #000;"
             .col-1.ps-0.ms-3
               = comment.submit "Reply", class:'btn btn-primary rounded-pill'
         
@@ -91,7 +91,7 @@
                         - unless comment.user_id == current_user.id
                           = link_to "Follow", home_path, class: "dropdown-item text-primary" 
               div.mb-2
-                = comment.comment_content
+                = comment.content
               div.d-flex.justify-content-around
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-chat
