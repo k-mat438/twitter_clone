@@ -65,7 +65,7 @@
             .col-1.ps-0.ms-3
               = comment.submit "Reply", class:'btn btn-primary rounded-pill'
         
-        - @comments.each do |comment|
+        - @post.comments.each do |comment|
           article.border.border-secondary.d-flex.p-2.align-items-center.px-xl-3
             .col-xl-1
               = link_to users_show_path(id: comment.user.id) do
