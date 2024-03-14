@@ -4,49 +4,36 @@
       = link_to home_path, class:'text-light'  do
         svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
           path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-house-door-fill
-      = link_to home_path, class:'userList'  do
-        p.mb-0.ps-3.pb-1.text-light Home
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-search
-      = link_to home_path, class:'userList'  do
-        p.mb-0.ps-3.pb-1.text-light Explore
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-bell
-      = link_to home_path, class:'userList'  do
-        p.mb-0.ps-3.pb-1.text-light Notification
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-envelope
-      = link_to home_path, class:'userList'  do
-        p.mb-0.ps-3.pb-1.text-light Messages
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-bookmark
-      = link_to home_path, class:'userList'  do
-        p.mb-0.ps-3.pb-1.text-light Bookmarks
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-house-door-fill
+      p.mb-0.ps-3.pb-1.text-light Home
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-search
+      p.mb-0.ps-3.pb-1.text-light Explore
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-bell
+      p.mb-0.ps-3.pb-1.text-light Notification
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-envelope
+      p.mb-0.ps-3.pb-1.text-light Messages
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-bookmark
+      p.mb-0.ps-3.pb-1.text-light Bookmarks
     .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
       = link_to home_path, class:'text-light'  do
         svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
           path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
       = link_to home_path, class:'userList'  do
         p.mb-0.ps-3.pt-1.text-light Premium
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to users_show_path(id: current_user.id), class:'text-light'  do
-        i.bi.bi-person-fill
-      = link_to users_show_path(id: current_user.id), class:'userList text-light'  do
-        p.mb-0.ps-3.pb-1 Profile 
-    .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
-      = link_to home_path, class:'text-light'  do
-        i.bi.bi-three-dots
+    = link_to users_show_path(id: current_user.id), class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-person-fill
+      p.mb-0.ps-3.pb-1 Profile 
+    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      i.bi.bi-three-dots
       p.mb-0.ps-3.pb-1 More
     .mb-5.col-11
       = link_to "Post",new_post_path, class:'w-100 btn btn-primary btn-lg rounded-pill'
-    .mb-5
+    .mb-3
       br
     .row.fs-4
       .dropdown

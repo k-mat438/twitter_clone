@@ -1,0 +1,106 @@
+.container
+  .row.justify-content-center.g-5
+    = render "devise/shared/left_sidebar"
+    .col-3
+    .col-7.border.border-secondary.px-0
+      nav.justify-content-center
+        ul.text-center.nav.d-flex.mb-2.border-bottom.border-secondary
+          li.nav-item.col-1
+            = link_to home_path, class:'h4 userList text-light' do 
+              i.bi.bi-arrow-left
+          li.nav-item.col-2.h5.pt-1
+            | ツイート
+        article.col.border-bottom.border-secondary.d-flex.p-2
+          .col-1.ps-1
+            - if @post.user.image.present?
+              = image_tag(@post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+            - else 
+              img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+          .col-11
+            .d-flex.justify-content-between
+              .d-flex                
+                strong.ps-1.pe-4
+                  = @post.user.name
+              .dropdown.pe-3
+                a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                  i.bi.bi-three-dots
+                  ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                    li
+                      - if @post.user_id == current_user.id
+                        = link_to "Delete", post_path(@post.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+                    li
+                      - unless @post.user_id == current_user.id
+                        = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+            div.my-2.fs-5
+              = @post.content
+            div
+              - if @post.post_images.present?
+                - @post.post_images.each do |post_image|
+                  = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")
+            div.text-secondary
+              = l(@post.created_at)
+            div 
+               hr
+            div.d-flex.justify-content-around
+              div
+                i.bi.bi-chat[style="font-size:18px;"]
+                = " #{@post.comments.count}"
+              = link_to home_path, class:'text-light'  do
+                i.bi.bi-repeat[style="font-size:18px;"]
+              = link_to home_path, class:'text-light'  do
+                i.bi.bi-heart[style="font-size:18px;"]
+              = link_to home_path, class:'text-light'  do
+                i.bi.bi-justify-left[style="font-size:18px;"]
+              = link_to home_path, class:'text-light'  do
+                i.bi.bi-bookmark-plus[style="font-size:18px;"]
+        div.m-2
+          = form_with model: [@post, @create_comment], url: post_comments_path(@post.id), class:"row row-cols-1 g-3 align-items-center" do |comment|
+            .col-2.ms-lg-3
+              - if current_user.image.present?
+                = image_tag(current_user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+              - else
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+            .col-7.ms-lg-5.w-xl-60
+              = comment.text_area :content, placeholder:'Post your reply', rows:"3", class:'form-control text-light', style:"background: #000;"
+            .col-1.ps-0.ms-3
+              = comment.submit "Reply", class:'btn btn-primary rounded-pill'
+        
+        - @post.comments.each do |comment|
+          article.border.border-secondary.d-flex.p-2.align-items-center.px-xl-3
+            .col-xl-1
+              = link_to users_show_path(id: comment.user.id) do
+                - if comment.user.image.present?
+                  = image_tag(comment.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-10.ms-lg-3
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = comment.user.name
+                  div.text-secondary
+                    = "#{(Date.today - comment.created_at.to_date).to_i.to_s}日前"
+                .dropdown
+                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                    i.bi.bi-three-dots
+                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                      li
+                        - if comment.user_id == current_user.id
+                          = link_to "Delete", post_comment_path(post_id: @post.id,id: comment.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+                      li
+                        - unless comment.user_id == current_user.id
+                          = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+              div.mb-2
+                = comment.content
+              div.d-flex.justify-content-around
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-chat
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-repeat
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-heart
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-justify-left
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-bookmark-plus
+    .col-2

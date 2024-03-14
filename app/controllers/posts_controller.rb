@@ -5,7 +5,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show; end
+  def show
+    @post = Post.find(params[:id])
+    @create_comment = Comment.new
+  end
 
   def create
     @post = current_user.posts.build(params_post)
