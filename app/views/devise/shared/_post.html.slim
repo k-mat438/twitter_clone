@@ -39,8 +39,14 @@
           = " #{post.comments.count}"
         = link_to home_path, class:'text-light'  do
           i.bi.bi-repeat
-        = link_to home_path, class:'text-light'  do
-          i.bi.bi-heart
+        - if post.favorites.exists?(user_id: current_user.id)
+          = link_to post_favorite_path(post_id: post.id, id: post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
+            i.bi.bi-heart-fill[style="font-size: 18px; color: red"]
+            = " #{post.favorites.count}"
+        - else 
+          = link_to post_favorites_path(post_id: post.id), data: { turbo_method: :post }, class:'text-light userList'  do
+            i.bi.bi-heart[style="font-size:18px;"]
+            = " #{post.favorites.count}"
         = link_to home_path, class:'text-light'  do
           i.bi.bi-justify-left
         = link_to home_path, class:'text-light'  do

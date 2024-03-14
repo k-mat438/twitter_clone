@@ -12,7 +12,9 @@ class UsersController < ApplicationController
     @comments = Comment.where(user_id: @user.id).order('created_at DESC')
   end
 
-  def show_favorites; end
+  def show_favorites
+    @user = User.find(params[:id])
+  end
 
   def edit
     return if @user.id == current_user.id
