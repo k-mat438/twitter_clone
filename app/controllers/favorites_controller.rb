@@ -6,12 +6,12 @@ class FavoritesController < ApplicationController
     # @favorite = current_user.favorites.build(post_id: @post.id)
     # @favorite.save
     @post.favorites.create(user_id: current_user.id)
-    redirect_to home_path
+    redirect_to request.referer
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     @post.favorites.find_by(user_id: current_user.id).delete
-    redirect_to home_path
+    redirect_to request.referer
   end
 end
