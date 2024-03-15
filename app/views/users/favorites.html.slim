@@ -43,6 +43,5 @@
                     i.bi.bi-justify-left
                   = link_to home_path, class:'text-light'  do
                     i.bi.bi-bookmark-plus
-        - @user.favorites.order('created_at DESC').each do |action|
-          = render "shared/user_action", action: action
+        = render partial: "shared/user_action", collection: @favorites, as: :action
     .col-3

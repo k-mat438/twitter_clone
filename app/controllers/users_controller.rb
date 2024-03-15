@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def reposts
-    # @reposts = @user.reposts.order('created_at DESC')
+    @reposts = @user.reposts.order('created_at DESC')
   end
 
   def comments
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    # @favorites = @user.favorites.order('created_at DESC')
+    @favorites = @user.favorites.order('created_at DESC')
   end
 
   def edit
