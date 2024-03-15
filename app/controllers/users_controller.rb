@@ -3,16 +3,19 @@
 class UsersController < ApplicationController
   before_action :set_target_user, only: %i[show reposts comments favorites edit]
   def show
-    @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
+    # @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
+    @posts = @user.posts.order('created_at DESC')
   end
 
   def reposts; end
 
   def comments
-    @comments = Comment.where(user_id: @user.id).order('created_at DESC')
+    # @comments = Comment.where(user_id: @user.id).order('created_at DESC')
+    @comments = @user.comments.order('created_at DESC')
   end
 
   def favorites
+    @favorites = @user.favorites.order('created_at DESC')
   end
 
   def edit

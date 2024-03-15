@@ -12,10 +12,11 @@
             | ツイート
         article.col.border-bottom.border-secondary.d-flex.p-2
           .col-1.ps-1
-            - if @post.user.image.present?
-              = image_tag(@post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
-            - else 
-              img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            = link_to users_show_path(id: @post.user_id) do
+              - if @post.user.image.present?
+                = image_tag(@post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+              - else 
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
           .col-11
             .d-flex.justify-content-between
               .d-flex                
