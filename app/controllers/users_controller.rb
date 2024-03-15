@@ -6,13 +6,15 @@ class UsersController < ApplicationController
     @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
   end
 
-  def show_reposts; end
+  def reposts; end
 
-  def show_comments
+  def comments
     @comments = Comment.where(user_id: @user.id).order('created_at DESC')
   end
 
-  def show_favorites; end
+  def favorites
+    @user = User.find(params[:id])
+  end
 
   def edit
     return if @user.id == current_user.id
