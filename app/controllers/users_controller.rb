@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_target_user, only: %i[show show_reposts show_comments show_favorites edit]
+  before_action :set_target_user, only: %i[show reposts comments favorites edit]
   def show
     @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
   end
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @user = User.find(params[:id])
   end
 
   def edit

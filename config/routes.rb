@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   get 'users/show', to: 'users#show'
-  get 'users/show_reposts', to: 'users#show_reposts'
-  get 'users/show_comments', to: 'users#show_comments'
-  get 'users/show_favorites', to: 'users#show_favorites'
+  get 'users/reposts', to: 'users#reposts'
+  get 'users/comments', to: 'users#comments'
+  get 'users/favorites', to: 'users#favorites'
   get 'users/profile_edit', to: 'users#edit'
   patch 'users/profile_edit', to: 'users#update'
 

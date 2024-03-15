@@ -13,10 +13,10 @@
             .userList.nav-link.text-light.active
               | リツイート
           li.nav-item.col-3
-            = link_to users_show_comments_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_comments_path(id: @user.id), class:'userList nav-link text-light' do 
               | コメント
           li.nav-item.col-3
-            = link_to users_show_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
               | いいね
           article.col.border.border-secondary.d-flex.p-2
               .col-1

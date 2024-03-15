@@ -10,13 +10,13 @@
             = link_to users_show_path(id: @user.id), class:'userList nav-link text-light' do 
               | ツイート
           li.nav-item.col-3
-            = link_to users_show_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
               | リツイート
           li.nav-item.col-3
             .userList.nav-link.text-light.active
               | コメント
           li.nav-item.col-3
-            = link_to users_show_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
               | いいね
           article.col.border.border-secondary.d-flex.p-2
               .col-1

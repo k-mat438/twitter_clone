@@ -10,10 +10,10 @@
             = link_to users_show_path(id: @user.id), class:'userList nav-link text-light' do 
               | ツイート
           li.nav-item.col-3
-            = link_to users_show_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
               | リツイート
           li.nav-item.col-3
-            = link_to users_show_comments_path(id: @user.id), class:'userList nav-link text-light' do 
+            = link_to users_comments_path(id: @user.id), class:'userList nav-link text-light' do 
               | コメント
           li.nav-item.col-3
             .userList.nav-link.text-light.active
