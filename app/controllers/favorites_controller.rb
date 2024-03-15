@@ -12,5 +12,4 @@ class FavoritesController < ApplicationController
     @post.favorites.find_by(user_id: current_user.id).delete
     redirect_to request.referer
   end
-
 end

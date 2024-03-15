@@ -43,52 +43,6 @@
                     i.bi.bi-justify-left
                   = link_to home_path, class:'text-light'  do
                     i.bi.bi-bookmark-plus
-        - @favorites.each do |favorite|
-          article.col.border.border-secondary.d-flex.p-2
-            .col-1
-              = link_to users_show_path(id: favorite.post.user.id) do
-                - if favorite.post.user.image.present?
-                  = image_tag(favorite.post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
-                - else 
-                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
-            .col-11
-              .d-flex.justify-content-between
-                .d-flex                
-                  strong.ps-1.pe-4
-                    = favorite.post.user.name
-                  div.text-secondary
-                    = "#{(Date.today - favorite.post.created_at.to_date).to_i.to_s}日前"
-                .dropdown
-                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
-                    i.bi.bi-three-dots
-                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
-                      li 
-                          = link_to "Show", post_path(favorite.id), class: "dropdown-item" 
-                      li
-                        - if favorite.post.user_id == current_user.id
-                          = link_to "Delete", post_path(favorite.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
-                      li
-                        - unless favorite.post.user_id == current_user.id
-                          = link_to "Follow", home_path, class: "dropdown-item text-primary" 
-              = link_to post_path(favorite.post.id), class:"text-light", style:'text-decoration: none;' do
-                div.mb-2
-                  = favorite.post.content
-              = link_to post_path(favorite.post.id) do
-                div
-                  - if favorite.post.post_images.present?
-                    - favorite.post.post_images.each do |post_image|
-                      = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")   
-              div.d-flex.justify-content-around
-                = link_to post_path(favorite.id), class:'text-light userList'  do
-                  i.bi.bi-chat
-                  = " #{favorite.post.comments.count}"
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-repeat
-                = link_to post_favorite_path(post_id: favorite.post.id, id: favorite.id), data: { turbo_method: :delete }, class:'text-light userList'  do
-                  i.bi.bi-heart-fill[style="font-size: 15px; color: red"]
-                  = " #{favorite.post.favorites.count}"
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-justify-left
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-bookmark-plus
+        - @user.favorites.order('created_at DESC').each do |action|
+          = render "shared/user_action", action: action
     .col-3

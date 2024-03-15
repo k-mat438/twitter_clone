@@ -1,6 +1,6 @@
 .container
   .row.justify-content-center.g-5
-    = render "devise/shared/left_sidebar"
+    = render "shared/left_sidebar"
     .col-3
     .col-7.border.border-secondary.px-0
       nav.justify-content-center
@@ -46,8 +46,14 @@
               div
                 i.bi.bi-chat[style="font-size:18px;"]
                 = " #{@post.comments.count}"
-              = link_to home_path, class:'text-light'  do
-                i.bi.bi-repeat[style="font-size:18px;"]
+              - if @post.reposts.exists?(user_id: current_user.id)
+                = link_to post_repost_path(post_id: @post.id, id: @post.reposts), data: { turbo_method: :delete }, class:'text-light userList'  do
+                  i.bi.bi-repeat[style="font-size: 18px; color: #198754;"]
+                  = " #{@post.reposts.count}"
+              - else 
+                = link_to post_reposts_path(post_id: @post.id), data: { turbo_method: :post }, class:'text-light userList'  do
+                  i.bi.bi-repeat[style="font-size:18px;"]
+                  = " #{@post.reposts.count}"
               - if @post.favorites.exists?(user_id: current_user.id)
                 = link_to post_favorite_path(post_id: @post.id, id: @post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
                   i.bi.bi-heart-fill[style="font-size: 18px; color: red"]

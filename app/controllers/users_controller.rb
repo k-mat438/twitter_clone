@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @posts = @user.posts.order('created_at DESC')
   end
 
-  def reposts; end
+  def reposts
+    # @reposts = @user.reposts.order('created_at DESC')
+  end
 
   def comments
     # @comments = Comment.where(user_id: @user.id).order('created_at DESC')
@@ -15,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @favorites = @user.favorites.order('created_at DESC')
+    # @favorites = @user.favorites.order('created_at DESC')
   end
 
   def edit

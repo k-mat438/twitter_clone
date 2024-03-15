@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepostsController < ApplicationController
   before_action :set_target_post, only: %i[create destroy]
 

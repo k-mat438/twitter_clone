@@ -1,24 +1,60 @@
-= link_to post_path(post.id), class:'text-light userList'  do
-  i.bi.bi-chat
-  = " #{post.comments.count}"
-- if post.favorites.exists?(user_id: current_user.id)
-  = link_to post_favorite_path(post_id: post.id, id: post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
-    i.bi.bi-repeat[style="font-size: 18px; color: #198754;"]
-    = " #{post.favorites.count}"
-- else 
-  = link_to post_favorites_path(post_id: post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-    i.bi.bi-repeat[style="font-size:18px;"]
-    = " #{post.favorites.count}"
+article.col.border.border-secondary.d-flex.p-2
+  .col-1
+    = link_to users_show_path(id: action.post.user.id) do
+      - if action.post.user.image.present?
+        = image_tag(action.post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+      - else 
+        img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+  .col-11
+    .d-flex.justify-content-between
+      .d-flex                
+        strong.ps-1.pe-4
+          = action.post.user.name
+        div.text-secondary
+          = "#{(Date.today - action.post.created_at.to_date).to_i.to_s}日前"
+      .dropdown
+        a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+          i.bi.bi-three-dots
+          ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+            li 
+                = link_to "Show", post_path(action.id), class: "dropdown-item" 
+            li
+              - if action.post.user_id == current_user.id
+                = link_to "Delete", post_path(action.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+            li
+              - unless action.post.user_id == current_user.id
+                = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+    = link_to post_path(action.post.id), class:"text-light", style:'text-decoration: none;' do
+      div.mb-2
+        = action.post.content
+    = link_to post_path(action.post.id) do
+      div
+        - if action.post.post_images.present?
+          - action.post.post_images.each do |post_image|
+            = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")   
+    div.d-flex.justify-content-around
+      = link_to post_path(action.post.id), class:'text-light userList'  do
+        i.bi.bi-chat
+        = " #{action.post.comments.count}"
+      - if action.post.reposts.exists?(user_id: current_user.id)
+        = link_to post_repost_path(post_id: action.post.id, id: action.post.reposts), data: { turbo_method: :delete }, class:'text-light userList'  do
+          i.bi.bi-repeat[style="font-size: 18px; color: #198754;"]
+          = " #{action.post.reposts.count}"
+      - else 
+        = link_to post_reposts_path(post_id: action.post.id), data: { turbo_method: :post }, class:'text-light userList'  do
+          i.bi.bi-repeat[style="font-size:18px;"]
+          = " #{action.post.reposts.count}"
 
-- if post.favorites.exists?(user_id: current_user.id)
-  = link_to post_favorite_path(post_id: post.id, id: post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
-    i.bi.bi-heart-fill[style="font-size: 18px; color: red"]
-    = " #{post.favorites.count}"
-- else 
-  = link_to post_favorites_path(post_id: post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-    i.bi.bi-heart[style="font-size:18px;"]
-    = " #{post.favorites.count}"
-= link_to home_path, class:'text-light'  do
-  i.bi.bi-justify-left
-= link_to home_path, class:'text-light'  do
-  i.bi.bi-bookmark-plus
+      - if action.post.favorites.exists?(user_id: current_user.id)
+        = link_to post_favorite_path(post_id: action.post.id, id: action.post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
+          i.bi.bi-heart-fill[style="font-size: 18px; color: red"]
+          = " #{action.post.favorites.count}"
+      - else 
+        = link_to post_favorites_path(post_id: action.post.id), data: { turbo_method: :post }, class:'text-light userList'  do
+          i.bi.bi-heart[style="font-size:18px;"]
+          = " #{action.post.favorites.count}"
+
+      = link_to home_path, class:'text-light'  do
+        i.bi.bi-justify-left
+      = link_to home_path, class:'text-light'  do
+        i.bi.bi-bookmark-plus
