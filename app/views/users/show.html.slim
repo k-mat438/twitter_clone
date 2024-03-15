@@ -1,10 +1,10 @@
 .container
   .row.justify-content-center.g-5
-    = render "devise/shared/left_sidebar"
+    = render "shared/left_sidebar"
     .col-3
     .col-6.border.border-secondary.px-0
       nav.justify-content-center
-        = render "devise/shared/profile"
+        = render "shared/profile", user: @user
         ul.text-center.nav.nav-tabs-custom.d-flex.mb-2.justify-content-between
           li.nav-item.col-3
             .userList.nav-link.text-light.active
@@ -43,5 +43,5 @@
                   i.bi.bi-justify-left
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-bookmark-plus
-        = render "devise/shared/post"
+        = render partial: "shared/post", collection: @posts, as: :post
     .col-3
