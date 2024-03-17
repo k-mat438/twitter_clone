@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_target_user, only: %i[show reposts comments favorites edit]
+  before_action :set_target_user, only: %i[show edit]
   def show
     @kind = params[:kind]
     case params[:kind]
