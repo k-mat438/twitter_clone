@@ -2,12 +2,12 @@
 
 class HomeController < ApplicationController
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page]).per(9)
-    @post = Post.new
-  end
-
-  def following
-    @posts = Post.joins(:user).where(user: { name: 'bluebird' }).order('created_at DESC').page(params[:page]).per(9)
+    if params[:kind] == 'following'
+      @posts = Post.joins(:user).where(user: { name: 'bluebird' }).order('created_at DESC').page(params[:page]).per(9)
+    else
+      @posts = Post.all.order('created_at DESC').page(params[:page]).per(9)
+      @post = Post.new
+    end
   end
 
   def top

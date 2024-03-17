@@ -6,7 +6,7 @@
         | 戻る
     article.col-7.border.border-secondary.d-flex.p-2.mx-auto
       .col-1
-        = link_to users_show_path(id: current_user.id) do
+        = link_to user_path(id: current_user.id) do
           - if current_user.image.present?
             = image_tag(current_user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
           - else

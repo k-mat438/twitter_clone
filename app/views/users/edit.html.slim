@@ -1,9 +1,9 @@
 .container.pt-5
   .row.justify-content-center.px-4
-    = form_with model: @user, url: users_profile_edit_path(id: current_user.id) do |f|
+    = form_with model: @user, url: user_path(id: current_user.id) do |f|
       .row.col-4.justify-content-center.mx-auto
         h2.col-11.font-weight-normal.d-flex
-          = link_to users_show_path(id: @user.id), class:'userList text-light pe-2' do 
+          = link_to user_path(id: @user.id), class:'userList text-light pe-2' do 
             i.bi.bi-arrow-left[style="font-size: 25px;"]
           | プロフィールを編集
         .col-11.mb-3

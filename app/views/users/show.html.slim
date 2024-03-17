@@ -6,18 +6,7 @@
       nav.justify-content-center
         = render "shared/profile", user: @user
         ul.text-center.nav.nav-tabs-custom.d-flex.mb-2.justify-content-between
-          li.nav-item.col-3
-            .userList.nav-link.text-light.active
-              | ツイート
-          li.nav-item.col-3
-            = link_to users_reposts_path(id: @user.id), class:'userList nav-link text-light' do 
-              | リツイート
-          li.nav-item.col-3
-            = link_to users_comments_path(id: @user.id), class:'userList nav-link text-light' do 
-              | コメント
-          li.nav-item.col-3
-            = link_to users_favorites_path(id: @user.id), class:'userList nav-link text-light' do 
-              | いいね
+          = render partial: "shared/profile_tab", locals: { user_id: @user.id, kind: @kind }
           article.col.d-flex.p-2
             .col-1
               - if @user.image.present?
@@ -43,5 +32,10 @@
                   i.bi.bi-justify-left
                 = link_to home_path, class:'text-light'  do
                   i.bi.bi-bookmark-plus
-        = render partial: "shared/post", collection: @posts, as: :post
+        - if @kind == 'show'
+          = render partial: "shared/post", collection: @posts, as: :post
+        - elsif @kind == 'comments'
+          = render partial: "shared/user_comments", collection: @comments, as: :comment
+        - else
+          = render partial: "shared/user_post", collection: @action, as: :action
     .col-3

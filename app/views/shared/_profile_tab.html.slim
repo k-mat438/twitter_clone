@@ -1,0 +1,35 @@
+- if kind == 'show'
+  li.nav-item.col-3
+    = link_to user_path(id: user_id), class:'userList nav-link text-light active' do 
+      | ツイート
+- else
+  li.nav-item.col-3
+    = link_to user_path(id: user_id), class:'userList nav-link text-light' do 
+      | ツイート
+
+- if kind == 'reposts'
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'reposts'), class:'userList nav-link text-light active' do 
+      | リツイート
+- else 
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'reposts'), class:'userList nav-link text-light' do 
+      | リツイート
+
+- if kind == 'comments'
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'comments'), class:'userList nav-link text-light active' do 
+      | コメント
+- else 
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'comments'), class:'userList nav-link text-light' do 
+      | コメント
+
+- if kind == 'favorites'
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'favorites'), class:'userList nav-link text-light active' do 
+      | いいね
+- else 
+  li.nav-item.col-3
+    = link_to user_path(id: user_id, kind: 'favorites'), class:'userList nav-link text-light' do 
+      | いいね

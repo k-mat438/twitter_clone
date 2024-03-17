@@ -17,7 +17,7 @@ div.position-relative
 .d-flex.justify-content-end.p-2.mb-4  
   div
     - if user.id == current_user.id
-      = link_to "プロフィールを編集",users_profile_edit_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
+      = link_to "プロフィールを編集", edit_user_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
     - else
       .mb-4.pb-3
 article.ps-3
