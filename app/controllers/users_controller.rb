@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   before_action :set_target_user, only: %i[show reposts comments favorites edit]
   def show
     @kind = params[:kind]
-    if params[:kind] == 'reposts'
+    case params[:kind]
+    when 'reposts'
       @action = @user.reposts.order('created_at DESC')
-    elsif params[:kind] == 'comments'
+    when 'comments'
       @comments = @user.comments.order('created_at DESC')
-    elsif params[:kind] == 'favorites'
+    when 'favorites'
       @action = @user.favorites.order('created_at DESC')
     else
       @posts = @user.posts.order('created_at DESC')
