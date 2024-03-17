@@ -37,5 +37,5 @@
         - elsif @kind == 'comments'
           = render partial: "shared/user_comments", collection: @comments, as: :comment
         - else
-          = render partial: "shared/user_post", collection: @action, as: :action
+          = render partial: "shared/user_action", collection: @action, as: :action
     .col-3

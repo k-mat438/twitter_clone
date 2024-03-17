@@ -17,19 +17,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def reposts
-  #   @reposts = @user.reposts.order('created_at DESC')
-  # end
-
-  # def comments
-  #   # @comments = Comment.where(user_id: @user.id).order('created_at DESC')
-  #   @comments = @user.comments.order('created_at DESC')
-  # end
-
-  # def favorites
-  #   @favorites = @user.favorites.order('created_at DESC')
-  # end
-
   def edit
     return if @user.id == current_user.id
 

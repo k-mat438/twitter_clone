@@ -33,27 +33,9 @@ article.col.border.border-secondary.d-flex.p-2
           - post.post_images.each do |post_image|
             = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")   
     div.d-flex.justify-content-around
-      = link_to post_path(post.id), class:'text-light userList'  do
-        i.bi.bi-chat
-        = " #{post.comments.count}"
-
-      - if post.reposts.exists?(user_id: current_user.id)
-        = link_to post_repost_path(post_id: post.id, id: post.reposts), data: { turbo_method: :delete }, class:'text-light userList'  do
-          i.bi.bi-repeat[style="font-size: 18px; color: #198754;"]
-          = " #{post.reposts.count}"
-      - else 
-        = link_to post_reposts_path(post_id: post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-          i.bi.bi-repeat[style="font-size:18px;"]
-          = " #{post.reposts.count}"
-
-      - if post.favorites.exists?(user_id: current_user.id)
-        = link_to post_favorite_path(post_id: post.id, id: post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
-          i.bi.bi-heart-fill[style="font-size: 18px; color: red"]
-          = " #{post.favorites.count}"
-      - else 
-        = link_to post_favorites_path(post_id: post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-          i.bi.bi-heart[style="font-size:18px;"]
-          = " #{post.favorites.count}"
+      = comment_count(post)
+      = repost_for(post)
+      = favorite_for(post)
 
       = link_to home_path, class:'text-light'  do
         i.bi.bi-justify-left

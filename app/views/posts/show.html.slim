@@ -43,29 +43,14 @@
             div 
                hr
             div.d-flex.justify-content-around
-              div
-                i.bi.bi-chat[style="font-size:18px;"]
-                = " #{@post.comments.count}"
-              - if @post.reposts.exists?(user_id: current_user.id)
-                = link_to post_repost_path(post_id: @post.id, id: @post.reposts), data: { turbo_method: :delete }, class:'text-light userList'  do
-                  i.bi.bi-repeat[style="font-size: 18px; color: #198754;"]
-                  = " #{@post.reposts.count}"
-              - else 
-                = link_to post_reposts_path(post_id: @post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-                  i.bi.bi-repeat[style="font-size:18px;"]
-                  = " #{@post.reposts.count}"
-              - if @post.favorites.exists?(user_id: current_user.id)
-                = link_to post_favorite_path(post_id: @post.id, id: @post.favorites), data: { turbo_method: :delete }, class:'text-light userList'  do
-                  i.bi.bi-heart-fill[style="font-size: 18px; color: red"]
-                  = " #{@post.favorites.count}"
-              - else 
-                = link_to post_favorites_path(post_id: @post.id), data: { turbo_method: :post }, class:'text-light userList'  do
-                  i.bi.bi-heart[style="font-size:18px;"]
-                  = " #{@post.favorites.count}"
+              = comment_count(@post)
+              = repost_for(@post)
+              = favorite_for(@post)
+
               = link_to home_path, class:'text-light'  do
-                i.bi.bi-justify-left[style="font-size:18px;"]
+                i.bi.bi-justify-left
               = link_to home_path, class:'text-light'  do
-                i.bi.bi-bookmark-plus[style="font-size:18px;"]
+                i.bi.bi-bookmark-plus
         div.m-2
           = form_with model: [@post, @create_comment], url: post_comments_path(@post.id), class:"row row-cols-1 g-3 align-items-center" do |comment|
             .col-2.ms-lg-3
