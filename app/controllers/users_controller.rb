@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_target_user, only: %i[show show_reposts show_comments show_favorites edit]
+  before_action :set_target_user, only: %i[show edit]
   def show
-    @posts = Post.where(user_id: @user.id).includes(:user).order('created_at DESC')
-  end
-
-  def reposts; end
-
-  def comments
-    @comments = Comment.where(user_id: @user.id).order('created_at DESC')
-  end
-
-  def favorites
-    @user = User.find(params[:id])
+    @kind = params[:kind]
+    case params[:kind]
+    when 'reposts'
+      @action = @user.reposts.order('created_at DESC')
+    when 'comments'
+      @comments = @user.comments.order('created_at DESC')
+    when 'favorites'
+      @action = @user.favorites.order('created_at DESC')
+    else
+      @posts = @user.posts.order('created_at DESC')
+      @kind = 'show'
+    end
   end
 
   def edit
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(params_user)
-    redirect_to users_show_path(id: @user.id)
+    redirect_to user_path(id: @user.id)
   end
 
   private

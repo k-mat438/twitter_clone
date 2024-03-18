@@ -25,7 +25,7 @@
           path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
       = link_to home_path, class:'userList'  do
         p.mb-0.ps-3.pt-1.text-light Premium
-    = link_to users_show_path(id: current_user.id), class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+    = link_to user_path(id: current_user.id), class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
       i.bi.bi-person-fill
       p.mb-0.ps-3.pb-1 Profile 
     = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
@@ -53,7 +53,7 @@
             a.dropdown-item[href="#"]
               | 設定
           li
-            = link_to users_show_path(id: current_user.id), class:'dropdown-item'  do
+            = link_to user_path(id: current_user.id), class:'dropdown-item'  do
               | プロフィール
           li
             hr.dropdown-divider

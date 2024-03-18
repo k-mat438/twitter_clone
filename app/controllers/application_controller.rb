@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     home_path(resource)
   end
+
+  def set_target_post
+    @post = Post.find(params[:post_id])
+  end
 end

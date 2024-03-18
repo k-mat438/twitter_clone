@@ -23,4 +23,3 @@ Layout/LineLength:
 Hc/RailsSpecificActionName:
   Exclude:
     - app/controllers/users/omniauth_callbacks_controller.rb
-    - app/controllers/users_controller.rb
