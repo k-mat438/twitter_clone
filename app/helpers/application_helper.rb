@@ -36,4 +36,17 @@ module ApplicationHelper
       end
     end
   end
+
+  def bookmark_for(post)
+    if post.bookmarks.exists?(user_id: current_user.id)
+      link_to post_bookmark_path(post_id: post.id, id: post.bookmarks), data: { turbo_method: :delete },
+                                                                        class: 'text-light userList' do
+        tag.i(" #{post.bookmarks.count}", class: 'bi bi-bookmark-plus', style: 'font-size: 15px; color: #198754;')
+      end
+    else
+      link_to post_bookmarks_path(post_id: post.id), data: { turbo_method: :post }, class: 'text-light userList' do
+        tag.i(" #{post.bookmarks.count}", class: 'bi bi-bookmark-plus', style: 'font-size: 15px;')
+      end
+    end
+  end
 end

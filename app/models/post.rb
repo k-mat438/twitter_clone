@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reposts, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :content, length: { maximum: 140 }
   validates :post_images, presence: true, unless: :content?

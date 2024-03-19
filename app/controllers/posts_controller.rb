@@ -23,6 +23,10 @@ class PostsController < ApplicationController
     redirect_to home_path
   end
 
+  def bookmarks
+    @bookmarks = current_user.bookmarks.order('created_at DESC')
+  end
+
   private
 
   def params_post

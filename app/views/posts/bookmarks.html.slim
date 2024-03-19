@@ -1,0 +1,54 @@
+.container
+  .row.justify-content-center.g-5
+    = render "shared/left_sidebar"
+    .col-3
+    .col-7.border.border-secondary.px-0
+      nav.justify-content-center
+        ul.text-center.nav.d-flex.mb-2.border-bottom.border-secondary
+          li.nav-item.col-1
+            = link_to home_path, class:'h4 userList text-light' do 
+              i.bi.bi-arrow-left
+          li.nav-item.col-2.h5.pt-1
+            | Bookmarks
+        - @bookmarks.each do |bookmark| 
+          article.col.border-bottom.border-secondary.d-flex.p-2
+            .col-1.ps-1
+              = link_to user_path(id: bookmark.user_id) do
+                - if bookmark.post.user.image.present?
+                  = image_tag(bookmark.post.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-11
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = bookmark.post.user.name
+                .dropdown.pe-3
+                  a.text-decoration-none.text-white[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+                    i.bi.bi-three-dots
+                    ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+                      li
+                        - if bookmark.post.user_id == current_user.id
+                          = link_to "Delete", post_path(bookmark.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+                      li
+                        - unless bookmark.post.user_id == current_user.id
+                          = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+              div.my-2.fs-5
+                = bookmark.post.content
+              div
+                - if bookmark.post.post_images.present?
+                  - bookmark.post.post_images.each do |post_image|
+                    = image_tag(post_image.variant(resize_to_fill: [200,200]),class:"col-5 m-2")
+              div.text-secondary
+                = l(bookmark.created_at)
+              div 
+                hr
+              div.d-flex.justify-content-around
+                = comment_count(bookmark.post)
+                = repost_for(bookmark.post)
+                = favorite_for(bookmark.post)
+
+                = link_to home_path, class:'text-light'  do
+                  i.bi.bi-justify-left
+                = bookmark_for(bookmark.post)
+    .col-2
