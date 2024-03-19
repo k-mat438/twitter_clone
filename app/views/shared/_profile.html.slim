@@ -19,7 +19,10 @@ div.position-relative
     - if user.id == current_user.id
       = link_to "プロフィールを編集", edit_user_path(id: current_user.id), class:'btn btn-outline-light rounded-pill'
     - else
-      .mb-4.pb-3
+      - if current_user.active_relationships.exists?
+        = link_to "Unfollow", user_relationships_path(user_id: user.id), data: { turbo_method: :delete }, class:'btn btn-outline-light rounded-pill'
+      -else
+        = link_to "Follow", user_relationships_path(user_id: user.id), data: { turbo_method: :post }, class:'btn btn-outline-light rounded-pill'
 article.ps-3
   .h3
     = user.name 
