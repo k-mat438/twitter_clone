@@ -41,11 +41,11 @@ module ApplicationHelper
     if post.bookmarks.exists?(user_id: current_user.id)
       link_to post_bookmark_path(post_id: post.id, id: post.bookmarks), data: { turbo_method: :delete },
                                                                         class: 'text-light userList' do
-        tag.i(" ", class: 'bi bi-bookmark-check-fill', style: 'font-size: 15px; color: #1C9BEF;')
+        tag.i(' ', class: 'bi bi-bookmark-check-fill', style: 'font-size: 15px; color: #1C9BEF;')
       end
     else
       link_to post_bookmarks_path(post_id: post.id), data: { turbo_method: :post }, class: 'text-light userList' do
-        tag.i(" ", class: 'bi bi-bookmark-plus', style: 'font-size: 15px;')
+        tag.i(' ', class: 'bi bi-bookmark-plus', style: 'font-size: 15px;')
       end
     end
   end
