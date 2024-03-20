@@ -20,10 +20,13 @@ article.col.border.border-secondary.d-flex.p-2
                 = link_to "Show", post_path(post.id), class: "dropdown-item" 
             li
               - if post.user_id == current_user.id
-                = link_to "Delete", post_path(post.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
+                = link_to "Delete", post_path(post.id), data: { turbo_method: :delete}, class: "text-danger" 
             li
               - unless post.user_id == current_user.id
-                = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+                - if current_user.relationships.exists?(follower_id: post.user_id)
+                  = link_to 'Unfollow', user_relationship_path(user_id: post.user_id, id:post), data: { turbo_method: :delete },class:'dropdown-item text-danger'
+                - else
+                  = link_to 'Follow', user_relationships_path(user_id: post.user_id), data: { turbo_method: :post },class:'dropdown-item text-primary'
     = link_to post_path(post.id), class:"text-light", style:'text-decoration: none;' do
       div.mb-2
         = post.content
