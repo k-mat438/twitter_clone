@@ -15,7 +15,7 @@ module ApplicationHelper
     if post.reposts.exists?(user_id: current_user.id)
       link_to post_repost_path(post_id: post.id, id: post.reposts), data: { turbo_method: :delete },
                                                                     class: 'text-light userList' do
-        tag.i(" #{post.reposts.count}", class: 'bi bi-repeat', style: 'font-size: 15px; color: #198754;')
+        tag.i(" #{post.reposts.count}", class: 'bi bi-repeat', style: 'font-size: 15px; color: #00BA7C;')
       end
     else
       link_to post_reposts_path(post_id: post.id), data: { turbo_method: :post }, class: 'text-light userList' do
@@ -28,11 +28,24 @@ module ApplicationHelper
     if post.favorites.exists?(user_id: current_user.id)
       link_to post_favorite_path(post_id: post.id, id: post.favorites), data: { turbo_method: :delete },
                                                                         class: 'text-light userList' do
-        tag.i(" #{post.favorites.count}", class: 'bi bi-heart-fill', style: 'font-size: 15px; color: red;')
+        tag.i(" #{post.favorites.count}", class: 'bi bi-heart-fill', style: 'font-size: 15px; color: #F9197F;')
       end
     else
       link_to post_favorites_path(post_id: post.id), data: { turbo_method: :post }, class: 'text-light userList' do
         tag.i(" #{post.favorites.count}", class: 'bi bi-heart', style: 'font-size: 15px;')
+      end
+    end
+  end
+
+  def bookmark_for(post)
+    if post.bookmarks.exists?(user_id: current_user.id)
+      link_to post_bookmark_path(post_id: post.id, id: post.bookmarks), data: { turbo_method: :delete },
+                                                                        class: 'text-light userList' do
+        tag.i(' ', class: 'bi bi-bookmark-check-fill', style: 'font-size: 15px; color: #1C9BEF;')
+      end
+    else
+      link_to post_bookmarks_path(post_id: post.id), data: { turbo_method: :post }, class: 'text-light userList' do
+        tag.i(' ', class: 'bi bi-bookmark-plus', style: 'font-size: 15px;')
       end
     end
   end

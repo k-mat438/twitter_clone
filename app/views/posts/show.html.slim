@@ -49,8 +49,7 @@
 
               = link_to home_path, class:'text-light'  do
                 i.bi.bi-justify-left
-              = link_to home_path, class:'text-light'  do
-                i.bi.bi-bookmark-plus
+              = bookmark_for(@post)
         div.m-2
           = form_with model: [@post, @create_comment], url: post_comments_path(@post.id), class:"row row-cols-1 g-3 align-items-center" do |comment|
             .col-2.ms-lg-3
