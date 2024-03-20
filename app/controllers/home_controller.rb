@@ -3,7 +3,8 @@
 class HomeController < ApplicationController
   def index
     if params[:kind] == 'following'
-      @posts = Post.joins(:user).where(user: { name: 'bluebird' }).order('created_at DESC').page(params[:page]).per(9)
+      @posts = Post.includes(:user).where(user_id:
+                    [*current_user.followings.ids]).order('created_at DESC').page(params[:page]).per(9)
     else
       @posts = Post.includes(:user).order('created_at DESC').page(params[:page]).per(9)
       @post = Post.new

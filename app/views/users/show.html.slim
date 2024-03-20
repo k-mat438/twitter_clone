@@ -4,7 +4,7 @@
     .col-3
     .col-6.border.border-secondary.px-0
       nav.justify-content-center
-        = render "shared/profile", user: @user
+        = render partial: "shared/profile", locals: { user: @user, me: current_user}
         ul.text-center.nav.nav-tabs-custom.d-flex.mb-2.justify-content-between
           = render partial: "shared/profile_tab", locals: { user_id: @user.id, kind: @kind }
           article.col.d-flex.p-2

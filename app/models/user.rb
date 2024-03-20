@@ -8,6 +8,16 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  # followする側
+  has_many :relationships, foreign_key: :following_id, dependent: :destroy, inverse_of: :following
+  # has_many :relationshipsと重複してしまうので
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy,
+                                      inverse_of: :follower
+
+  # フォローしている人(全員)一覧を取得する,followingsは任意の名前,あるユーザーが中間テーブルを介しているのでthorough
+  has_many :followings, through: :relationships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :following
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
