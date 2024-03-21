@@ -7,35 +7,19 @@
         = render partial: "shared/profile", locals: { user: @user, me: current_user}
         ul.text-center.nav.nav-tabs-custom.d-flex.mb-2.justify-content-between
           = render partial: "shared/profile_tab", locals: { user_id: @user.id, kind: @kind }
-          article.col.d-flex.p-2
-            .col-1
-              - if @user.image.present?
-                = image_tag(@user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
-              - else
-                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
-            .col-11
-              .d-flex
-                strong.pe-4
-                  = @user.name
-                div.text-secondary
-                  |  100日前
-              div.mb-2.text-start
-                | はじめまして
-              div.d-flex.justify-content-around
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-chat
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-repeat
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-heart
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-justify-left
-                = link_to home_path, class:'text-light'  do
-                  i.bi.bi-bookmark-plus
         - if @kind == 'show'
-          = render partial: "shared/post", collection: @posts, as: :post
+          -if @posts.exists?
+            = render partial: "shared/post", collection: @posts, as: :post
+          - else 
+            = render "shared/default_post", user: @user
         - elsif @kind == 'comments'
-          = render partial: "shared/user_comments", collection: @comments, as: :comment
+          -if @comments.exists?
+            = render partial: "shared/user_comments", collection: @comments, as: :comment
+          - else 
+            = render "shared/default_post", user: @user
         - else
-          = render partial: "shared/user_action", collection: @action, as: :action
+          -if @action.exists?
+            = render partial: "shared/user_action", collection: @action, as: :action
+          - else 
+            = render "shared/default_post", user: @user
     .col-3
