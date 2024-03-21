@@ -17,13 +17,10 @@ article.col.border.border-secondary.d-flex.p-2
           i.bi.bi-three-dots
           ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
             li 
-                = link_to "Show", post_path(action.id), class: "dropdown-item" 
+                = link_to "Show", post_path(action.post.id), class: "dropdown-item" 
             li
               - if action.post.user_id == current_user.id
-                = link_to "Delete", post_path(action.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
-            li
-              - unless action.post.user_id == current_user.id
-                = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+                = link_to "Delete", post_path(action.post.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
     = link_to post_path(action.post.id), class:"text-light", style:'text-decoration: none;' do
       div.mb-2
         = action.post.content
