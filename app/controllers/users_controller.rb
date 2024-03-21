@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_target_user, only: %i[show edit]
+  before_action :set_target_user, only: %i[show edit followings followers]
   def show
     @kind = params[:kind]
     case params[:kind]
@@ -15,6 +15,14 @@ class UsersController < ApplicationController
       @posts = @user.posts.order('created_at DESC')
       @kind = 'show'
     end
+  end
+
+  def followings
+    @followings = @user.followings
+  end
+
+  def followers
+    @followers = @user.followers
   end
 
   def edit

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :users, only: %i[show edit update]
+  resources :users, only: %i[show edit update] do
+    resources :relationships, only: %i[create destroy]
+    get :followings, on: :member
+    get :followers, on: :member
+  end
 
   resources :posts, only: %i[new show create destroy] do
     resources :comments, only: %i[create destroy]

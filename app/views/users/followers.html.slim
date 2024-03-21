@@ -1,0 +1,42 @@
+.container
+  .row.justify-content-center.g-5
+    = render "shared/left_sidebar"
+    .col-2.me-3
+    .col-6.border.border-secondary.px-0
+      nav.justify-content-center
+        ul.nav.d-flex.mb-2
+          li.nav-item
+            = link_to user_path(@user.id), class:'h4 userList text-light' do 
+              i.bi.bi-arrow-left
+          li.nav-item.col-2.h4.ms-3
+            = @user.name
+        ul.justify-content-center.text-center.nav.d-flex.mb-2
+          li.nav-item.col-5
+            = link_to followings_user_path(user_id: @user.id), class:"me-4 userList text-light h4" do
+              | Following
+          li.nav-item.col-5
+            = link_to followers_user_path(user_id: @user.id), class:"userList text-light rounded-pill h4" do
+              | Follower
+        - @followers.each do |follower| 
+          article.col.border.border-secondary.d-flex.p-2
+            .col-1
+              = link_to user_path(id: follower.id) do
+                - if follower.image.present?
+                  = image_tag(follower.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-11
+              .d-flex.justify-content-between
+                .d-flex                
+                  strong.ps-1.pe-4
+                    = follower.name    
+                div               
+                  - if current_user.relationships.exists?(follower_id: follower.id)
+                    = link_to 'Unfollow', user_relationship_path(user_id: follower.id), data: { turbo_method: :delete },class:'btn btn-danger rounded-pill'
+                  - elsif follower.id == current_user.id
+                    div 
+                      .ps-1
+                  - else
+                    = link_to 'Follow', user_relationships_path(user_id: follower.id), data: { turbo_method: :post },class:'btn btn-primary rounded-pill'
+    .col-3
+    
