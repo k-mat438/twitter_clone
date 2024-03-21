@@ -1,4 +1,4 @@
-article.col.border-bottom.border-secondary.d-flex.px-3.py-2
+article.col.border-bottom.border-secondary.d-flex.px-3.py-1
   .col-1.me-1
     = link_to user_path(id: post.user.id) do
       - if post.user.image.present?
@@ -6,9 +6,9 @@ article.col.border-bottom.border-secondary.d-flex.px-3.py-2
       - else 
         img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
   .col-11
-    .d-flex.justify-content-between
-      .d-flex                
-        strong.ps-1.pe-4
+    .d-flex.justify-content-between.h-25
+      .d-flex
+        span.ps-1.pe-4
           = post.user.name
         div.text-secondary
           = "#{(Date.today - post.created_at.to_date).to_i.to_s}日前"
@@ -28,7 +28,7 @@ article.col.border-bottom.border-secondary.d-flex.px-3.py-2
                 - else
                   = link_to 'Follow', user_relationships_path(user_id: post.user_id), data: { turbo_method: :post },class:'dropdown-item text-primary'
     = link_to post_path(post.id), class:"text-light", style:'text-decoration: none;' do
-      div.mb-2
+      div.mb-1
         = post.content
     = link_to post_path(post.id) do
       div
