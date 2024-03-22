@@ -1,0 +1,94 @@
+.container-fluid
+  .row.justify-content-center.g-5
+    .col-2.px-3.mt-2
+      nav
+        .mt-5.mb-3.d-flex.fs-4
+          = link_to home_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
+        = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-house-door-fill
+          p.mb-0.ps-3.pb-1.text-light Home
+        = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-search
+          p.mb-0.ps-3.pb-1.text-light Explore
+        = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-bell
+          p.mb-0.ps-3.pb-1.text-light Notification
+        = link_to rooms_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-envelope
+          p.mb-0.ps-3.pb-1.text-light Messages
+        = link_to bookmarks_posts_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-bookmark
+          p.mb-0.ps-3.pb-1.text-light Bookmarks
+        .mb-3.d-flex.fs-4.rounded-pill[onMouseOut="this.style.background='black';" onMouseOver="this.style.background='#212529'"]
+          = link_to home_path, class:'text-light'  do
+            svg.bi.bi-search[xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewbox="0 0 16 16"]
+              path[d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"]
+          = link_to home_path, class:'userList'  do
+            p.mb-0.ps-3.pt-1.text-light Premium
+        = link_to user_path(id: current_user.id), class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-person-fill
+          p.mb-0.ps-3.pb-1 Profile 
+        = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+          i.bi.bi-three-dots
+          p.mb-0.ps-3.pb-1 More
+        .mb-5.col-11
+          = link_to "Post",new_post_path, class:'w-100 btn btn-primary btn-lg rounded-pill'
+        .mb-3
+          br
+        .row.fs-4
+          .dropdown
+            a.d-flex.align-items-center.text-white.text-decoration-none.dropdown-toggle[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+              - if current_user.image.present?
+                = image_tag(current_user.image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+              - else
+                img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+              strong
+                = "#{current_user.id}:"
+                = current_user.name
+            ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+              li
+                a.dropdown-item[href="#"]
+                  | メッセージ...
+              li
+                a.dropdown-item[href="#"]
+                  | 設定
+              li
+                = link_to user_path(id: current_user.id), class:'dropdown-item'  do
+                  | プロフィール
+              li
+                hr.dropdown-divider
+              li
+                = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class:"dropdown-item"
+    .col-3.border.border-secondary.px-0
+      nav.justify-content-center
+        ul.nav.d-flex.mb-2
+          li.nav-item.col-2.h4.ms-3
+            | Messages
+        - @entryes.each do |entry|
+          article.col.d-flex
+            .col-2
+              = link_to user_path(id: entry.user_id) do
+                - if entry.user.image.present?
+                  = image_tag(entry.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-9
+              = link_to room_path(id: entry.room_id, user_id: entry.user_id),class:'userList text-light' do
+                .d-flex.justify-content-between
+                  strong.ps-1.pe-4
+                    = entry.user.name
+                div
+                  - if entry.room.messages.exists?
+                    = entry.room.messages.last.message
+                  - else 
+                    strong.ms-3
+                      | Send a message!      
+    .col-6.border.border-secondary.px-0.d-flex.align-items-center.justify-content-center.px-1
+      h3
+        | Let's send a message!
+      / nav.justify-content-center
+      /   ul.nav.d-flex.mb-2
+      /     li.nav-item.col-2.h4.ms-3
+           
