@@ -5,7 +5,7 @@ class CreateMessages < ActiveRecord::Migration[7.0]
     create_table :messages do |t|
       t.references :user, null: false, foreign_key: true
       t.references :room, null: false, foreign_key: true
-      t.string :message, limit: 140
+      t.string :content, limit: 140
 
       t.timestamps
     end

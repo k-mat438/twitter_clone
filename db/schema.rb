@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_051143) do
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
-    t.string "message", limit: 140
+    t.string "content", limit: 140
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"

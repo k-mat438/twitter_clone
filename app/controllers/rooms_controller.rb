@@ -2,17 +2,25 @@
 
 class RoomsController < ApplicationController
   def index
-    @users_room = UserRoom.all
     rooms = current_user.user_rooms.pluck(:room_id)
     @entryes = UserRoom.all.where(room_id: rooms).and(UserRoom.all.where.not(user_id: current_user.id))
-  end
+    @kind = params[:kind]
+    return unless params[:kind] == 'show'
 
-  def show
-    rooms = current_user.user_rooms.pluck(:room_id)
-    @entryes = UserRoom.all.where(room_id: rooms).and(UserRoom.all.where.not(user_id: current_user.id))
     @user = User.find(params[:user_id])
     @room = Room.find(params[:id])
+    @message = Message.new
+  end
 
-    @message = Message.new(room_id: params[:id])
+  def create
+    message = current_user.messages.build(room_id: params[:room_id], content: params_message[:content])
+    message.save
+    redirect_to request.referer
+  end
+
+  private
+
+  def params_message
+    params.require(:message).permit(:content)
   end
 end
