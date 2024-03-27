@@ -25,6 +25,23 @@ class UsersController < ApplicationController
     @followers = @user.followers
   end
 
+  def create_room
+    @user = User.find(params[:id])
+    return if @user.id == current_user.id
+
+    rooms = current_user.user_rooms.pluck(:room_id)
+    user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
+    if user_rooms.nil?
+      # 共有ルームがないとき
+      @room = Room.create
+      UserRoom.create(user_id: current_user.id, room_id: @room.id)
+      UserRoom.create(user_id: @user.id, room_id: @room.id)
+    else
+      @room = user_rooms.room
+    end
+    redirect_to rooms_path
+  end
+
   def edit
     return if @user.id == current_user.id
 

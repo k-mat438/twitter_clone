@@ -1,7 +1,7 @@
 .container
-  .row.justify-content-center.g-5
+  .row.justify-content-center
     = render "shared/left_sidebar"
-    .col-3
+    .col-1
     .col-7.border.border-secondary.px-0
       nav.justify-content-center
         ul.text-center.nav.d-flex.mb-2.border-bottom.border-secondary
@@ -31,7 +31,10 @@
                         = link_to "Delete", post_path(@post.id), data: { turbo_method: :delete}, class: "dropdown-item text-danger" 
                     li
                       - unless @post.user_id == current_user.id
-                        = link_to "Follow", home_path, class: "dropdown-item text-primary" 
+                        - if current_user.relationships.exists?(follower_id: @post.user_id)
+                          = link_to "Unfollow", user_relationship_path(user_id: @post.user_id), data: { turbo_method: :delete }, class: "dropdown-item text-danger" 
+                        - else
+                          = link_to "Follow", user_relationships_path(user_id: @post.user_id), data: { turbo_method: :post }, class: "dropdown-item text-primary" 
             div.my-2.fs-5
               = @post.content
             div

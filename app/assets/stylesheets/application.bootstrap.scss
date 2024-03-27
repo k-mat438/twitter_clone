@@ -114,3 +114,30 @@ a.userList:hover{
     width: 60% !important;    
   }
 }
+
+
+.balloon1-left {
+  position: relative;
+  display: inline-block;
+  margin: 0.2em 0 0 15px;
+  padding: 14px 15px;
+  min-width: 30px;
+  max-width: 90%;
+  color: #F7F7F7;
+  font-size: 16px;
+  background: #2F3336;
+  border-radius: 15px;
+}
+
+.balloon1-right {
+  position: relative;
+  display: inline-block;
+  margin: 0.2em 15px 0 0;
+  padding: 14px 15px;
+  min-width: 30px;
+  max-width: 90%;
+  color: #F7F7F7;
+  font-size: 16px;
+  background: #1C9BEF;
+  border-radius: 15px;
+}

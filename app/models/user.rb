@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follower
   has_many :followers, through: :reverse_of_relationships, source: :following
 
+  has_many :messages, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

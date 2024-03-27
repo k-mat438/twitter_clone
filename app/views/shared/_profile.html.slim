@@ -19,6 +19,7 @@ div.position-relative
     - if user.id == me.id
       = link_to 'プロフィールを編集', edit_user_path(id: me.id), class:'btn btn-outline-light rounded-pill'
     - else
+      = link_to 'DM', create_room_user_path(id: user.id), data: { turbo_method: :post }, class:'me-2 btn btn-outline-light rounded-pill'
       - if me.relationships.exists?(follower_id: user.id)
         = link_to 'Unfollow', user_relationship_path(user_id: user.id), data: { turbo_method: :delete },class:'btn btn-danger rounded-pill'
       - else

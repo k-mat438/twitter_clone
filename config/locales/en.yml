@@ -41,3 +41,4 @@ en:
   time:
     formats:
       default: "%l:%M %p · %b %d, %Y"
+      message: "%b %d, %Y, %l:%M %p"

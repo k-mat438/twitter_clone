@@ -1,0 +1,62 @@
+.container-fluid
+  .row.justify-content-center.gx-3
+    = render '/shared/left_sidebar'
+    .col-3.border.border-secondary.px-0
+      nav.justify-content-center[style='position: sticky; top: 0px;']
+        ul.nav.d-flex.mb-2
+          li.nav-item.col-2.h4.ms-3
+            | Messages
+        - @entryes.each do |entry|
+          article.col.d-flex.ps-2
+            .col-2
+              = link_to user_path(id: entry.user_id) do
+                - if entry.user.image.present?
+                  = image_tag(entry.user.image.variant(resize_to_fill: [40, 40]),class:"rounded-circle")
+                - else 
+                  img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="40" height="40"]
+            .col-9
+              = link_to rooms_path(kind: 'show',id: entry.room_id, user_id: entry.user_id),class:'userList text-light' do
+                .d-flex.justify-content-between
+                  strong.ps-1.pe-4
+                    = entry.user.name
+                div
+                  - if entry.room.messages.exists?
+                    = entry.room.messages.last.content
+                  - else 
+                    strong.ms-3
+                      | Send a message!      
+    - if @kind
+      .col-6.border.border-secondary.px-0
+        nav.justify-content-center
+          ul.nav.d-flex.mb-2.sticky-top[style='background: black;']
+            li.nav-item.col-2.h4.ms-3
+              = @user.name
+          section.gradient-custom[style='min-height: 100vh; position: relative;']
+            - @room.messages.each do |message|
+              - if message.user.id == current_user.id
+                .d-flex.justify-content-end
+                  .text-start.balloon1-right
+                    p.mb-0
+                      = message.content
+                p.text-secondary.pe-2.text-end[style='font-size: smaller;']
+                  = l(message.created_at, format: :message)
+              - else
+                .d-flex.justify-content-start
+                  div.balloon1-left
+                    p.mb-0
+                      = message.content
+                p.text-secondary.ps-3[style='font-size: smaller;']
+                  = l(message.created_at, format: :message)
+          div.sticky-bottom[style='background: black;']
+            = form_with model: @message, url: rooms_path(room_id: @room.id) do |form|
+              div.mx-3.rounded-pill.d-flex.justify-content-around[style='background: #202327; bottom:0;']
+                div
+                div
+                div
+                = form.text_area :content, class:'text-light w-75', placeholder:'Start new message',style:'background: #202327; border: none;'
+                = button_tag type: "submit", class:'btn btn-rounded' do
+                  i.bi.bi-send[style='color: #1C9BEF;']
+    - else
+      .col-6.border.border-secondary.px-0.d-flex.align-items-center.justify-content-center.px-1
+        h2
+          | Select a message
