@@ -1,17 +1,17 @@
 .container
-  .row.justify-content-center.g-5
+  .row.justify-content-center
     = render "shared/left_sidebar"
     .col-1
-    .col-6.border.border-secondary.px-0
-      nav.justify-content-center
-        ul.text-center.nav.d-flex.mb-2.border-bottom.border-secondary
+    .col-6.px-0
+      nav.justify-content-center.border.border-secondary
+        ul.text-center.nav.d-flex.mb-2
           li.nav-item.col-1
             = link_to home_path, class:'h4 userList text-light' do 
               i.bi.bi-arrow-left
           li.nav-item.col-2.h5.pt-1
             | Bookmarks
         - @bookmarks.each do |bookmark| 
-          article.col.border-bottom.border-secondary.d-flex.p-2
+          article.col.border-top.border-secondary.d-flex.p-2
             .col-1.ps-1
               = link_to user_path(id: bookmark.user_id) do
                 - if bookmark.post.user.image.present?

@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
+
+  has_many :notifications, foreign_key: :send_id, dependent: :destroy, inverse_of: :sender
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: :receive_id, dependent: :destroy,
+                                   inverse_of: :receiver
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -49,5 +53,15 @@ class User < ApplicationRecord
       header_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     header_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(['send_id = ? and receive_id = ? and action = ?', current_user.id, id, 'follow'])
+    return unless temp.blank? && current_user.id != id
+
+    notification = current_user.notifications.build(receive_id: id, action: 'follow')
+
+    notification.checked = true if notification.send_id == notification.receive_id
+    notification.save if notification.valid?
   end
 end

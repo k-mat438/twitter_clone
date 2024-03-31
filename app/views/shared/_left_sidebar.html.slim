@@ -10,9 +10,14 @@
     = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
       i.bi.bi-search
       p.mb-0.ps-3.pb-1.text-light Explore
-    = link_to home_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
-      i.bi.bi-bell
-      p.mb-0.ps-3.pb-1.text-light Notification
+    = link_to notifications_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
+      - if current_user.passive_notifications.find_by(checked: false).present?
+        i.bi.bi-bell.position-relative
+          span.position-absolute.top-0.start-100.translate-middle.badge.border.border-light.rounded-circle.bg-danger.p-1
+            span.visually-hidden
+      - else
+        i.bi.bi-bell
+      p.mb-0.ps-3.pb-1.text-light Notifications
     = link_to rooms_path, class:'text-light mb-3 d-flex fs-4 rounded-pill userList'  do
       i.bi.bi-envelope
       p.mb-0.ps-3.pb-1.text-light Messages

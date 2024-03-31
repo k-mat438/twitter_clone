@@ -2,8 +2,8 @@
   .row.justify-content-center
     = render "shared/left_sidebar"
     .col-1
-    .col-7.border.border-secondary.px-0
-      nav.justify-content-center
+    .col-7.px-0
+      nav.justify-content-center.border.border-secondary
         ul.text-center.nav.d-flex.mb-2.border-bottom.border-secondary
           li.nav-item.col-1
             = link_to home_path, class:'h4 userList text-light' do 
@@ -66,7 +66,7 @@
               = comment.submit "Reply", class:'btn btn-primary rounded-pill'
         
         - @post.comments.each do |comment|
-          article.border.border-secondary.d-flex.p-2.align-items-center.px-xl-3
+          article.border-top.border-secondary.d-flex.p-2.align-items-center.px-xl-3
             .col-xl-1
               = link_to user_path(id: comment.user.id) do
                 - if comment.user.image.present?

@@ -1,0 +1,102 @@
+.container-fluid
+  .row.justify-content-center.gx-3
+    = render "shared/left_sidebar"
+    .col-5.px-0
+      nav.justify-content-center.border.border-secondary
+        ul.text-center.nav.d-flex.mb-2
+          li.nav-item.col-1
+            = link_to home_path, class:'h4 userList text-light' do 
+              i.bi.bi-arrow-left
+          li.nav-item.col-2.h5.pt-1
+            | Notifications
+        - @notifications.each do |notice| 
+          article.col.border-top.border-secondary.d-flex.p-2
+            - if notice.action == 'like'
+              div.me-2
+                i.bi.bi-heart-fill[style="font-size: 20px; color: #F9197F;"]
+              div.mb-2
+                div 
+                  = link_to user_path(User.find(notice.send_id).id) do
+                    - if User.find(notice.send_id).image.present?
+                      = image_tag(User.find(notice.send_id).image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+                    - else
+                      img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+                div.fs-5
+                  = "#{User.find(notice.send_id).name} #{notice.action}d your post"
+                div
+                  = link_to post_path(Post.find(notice.post_id).id), class:'userList text-secondary' do
+                    = "#{Post.find(notice.post_id).content}"
+            - elsif notice.action == 'repost'
+              div.me-2
+                i.bi.bi-repeat[style="font-size: 23px; color: #00BA7C;"]
+              div.mb-2
+                div 
+                  = link_to user_path(User.find(notice.send_id).id) do
+                    - if User.find(notice.send_id).image.present?
+                      = image_tag(User.find(notice.send_id).image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+                    - else
+                      img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+                div.fs-5
+                  = "#{User.find(notice.send_id).name} #{notice.action}ed your post"
+                div
+                  = link_to post_path(Post.find(notice.post_id).id), class:'userList text-secondary' do
+                    = "#{Post.find(notice.post_id).content}"
+            - elsif notice.action == 'follow'
+              div.me-2
+                  i.bi.bi-person-fill[style="font-size: 25px; color: #1C9BEF;"]
+              div.mb-2
+                div 
+                  = link_to user_path(User.find(notice.send_id).id) do
+                    - if User.find(notice.send_id).image.present?
+                      = image_tag(User.find(notice.send_id).image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+                    - else
+                      img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+                div.fs-5
+                  = "#{User.find(notice.send_id).name} #{notice.action}ed you"
+            - elsif notice.action == 'comment'
+              div.me-2
+                = link_to user_path(User.find(notice.send_id).id) do
+                  - if User.find(notice.send_id).image.present?
+                    = image_tag(User.find(notice.send_id).image.variant(resize_to_fill: [32, 32]),class:"rounded-circle")
+                  - else
+                    img.rounded-circle.me-2[src="https://github.com/mdo.png" alt="" width="32" height="32"]
+              div.mb-2
+                div.fs-5
+                  = "#{User.find(notice.send_id).name} commneted on your post"
+                div
+                  = link_to post_path(Post.find(notice.post_id).id), class:'userList text-secondary' do
+                    ="#{Comment.find(notice.comment_id).content}"
+        article.col.border-top.border-secondary.d-flex.p-2
+          div.me-2
+            i.bi.bi-twitter[style="font-size: 25px; color: #1C9BEF;"]
+          div.mb-2
+            div.fs-5
+              | Welcome to Twitter
+    .col-3.text-center.ms-4
+      form.form-inline.my-2.my-lg-0
+        input.form-control.mr-sm-2.mt-3.rounded-pill.mb-3 placeholder="Search"
+      .card.mb-3[style='background-color:#16181C;']
+        .card-body
+          h5 
+            | Subscribe to Premium
+          p.text-start Subscribe to unlock new features and if eligible, receive a share of ads revenue.
+          = button_to "Subscribe",root_path, class:'btn btn-primary d-flex align-items-start rounded-pill'
+      .card[style='background-color:#16181C;']
+        .card-body
+          p.card-title.text-left.fs-4
+            | What's happening
+          ul.list-group
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | ABC
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | DE
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | FG
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | あ
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | い
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | う
+            li.list-group-item.text-light.text-start[style='background-color:#16181C;']
+              | え

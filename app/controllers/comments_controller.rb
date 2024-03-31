@@ -3,8 +3,9 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(params_comment)
-    return unless @comment.save
-
+    @comment.save
+    @post = Post.find(params[:post_id])
+    @post.create_notification_comment!(current_user, @comment.id)
     redirect_to post_path(@comment.post.id)
   end
 
