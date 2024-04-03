@@ -39,6 +39,8 @@ class Post < ApplicationRecord
   def create_notification_comment!(current_user, comment_id)
     user_id = self.user_id
 
+    return unless current_user.id != user_id
+
     notification = current_user.notifications.build(post_id: id, receive_id: user_id, comment_id:,
                                                     action: 'comment')
 
