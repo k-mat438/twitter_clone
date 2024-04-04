@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(params_comment)
     ActiveRecord::Base.transaction do
-      @comment.save
+      @comment.save!
       @post = Post.find(params[:post_id])
       @post.create_notification_comment!(current_user, @comment.id)
     end
