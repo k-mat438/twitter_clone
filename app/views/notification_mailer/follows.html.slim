@@ -1,0 +1,19 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="UTF-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+  body
+    .container
+      main
+        h1
+          = "Hello, #{@user.name}!"
+        p
+          | This is a followed notification email.
+        p
+          | Please take action by clicking the button below:
+        a.button[href="https://example.com/action"]
+          | Take Action
+      footer
+        p
+          | Copyright © 2024 Company. All rights reserved.

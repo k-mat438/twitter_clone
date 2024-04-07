@@ -19,7 +19,14 @@ class PostsController < ApplicationController
 
   def destroy
     @post = current_user.posts.find(params[:id])
-    @post.delete if @post.present?
+    if @post.present?
+      # @post.comments.delete_all
+      # @post.favorites.delete_all
+      # @post.reposts.delete_all
+      # @post.bookmarks.delete_all
+      # @post.notifications.delete_all
+      @post.destroy
+    end
     redirect_to home_path
   end
 
