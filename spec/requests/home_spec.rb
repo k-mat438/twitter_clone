@@ -6,12 +6,10 @@ RSpec.describe 'Homes', type: :request do
   describe 'GET /index' do
     # ログインしているとき
     context 'when an authorized user' do
-      before do
-        @user = FactoryBot.create(:user)
-      end
+      let(:user) { FactoryBot.create(:user) }
 
       it 'returns http success' do
-        sign_in @user
+        sign_in user
         get '/home'
         expect(response).to have_http_status(:success)
       end
