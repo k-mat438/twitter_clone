@@ -23,12 +23,14 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'POST /create' do
     # 投稿
-    it 'adds a post' do
-      post_params = FactoryBot.attributes_for(:post)
-      sign_in user
-      expect do
-        post posts_path, params: { post: post_params }
-      end.to change(user.posts, :count).by(1)
+    context 'with valid parameters' do
+      it 'adds a post' do
+        post_params = FactoryBot.attributes_for(:post)
+        sign_in user
+        expect do
+          post posts_path, params: { post: post_params }
+        end.to change(user.posts, :count).by(1)
+      end
     end
 
     # 投稿されない時
