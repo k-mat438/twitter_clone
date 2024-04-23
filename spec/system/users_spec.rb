@@ -7,30 +7,34 @@ RSpec.describe 'Users', type: :system do
     driven_by(:rack_test)
   end
 
-  # pending "add some scenarios (or delete) #{__FILE__}"
   # サインアップ
   describe 'Create new User' do
     context 'when Form is valid' do
-      it 'Successful user registration' do
+      before do
         visit new_user_registration_path
         fill_in 'user[name]', with: 'systest'
         fill_in 'user[email]', with: 'systest@test.com'
-        fill_in 'user[phone_number]', with: 98765
+        fill_in 'user[phone_number]', with: 98_765
         fill_in 'user[birth]', with: '2003-01-01'
-        fill_in 'Password', with: 123456
-        fill_in 'Password confirmation', with: 123456
-        find('input[name="commit"]').click
-        expect(User.count).to eq(1)
+        fill_in 'Password', with: 123_456
+        fill_in 'Password confirmation', with: 123_456
+      end
+
+      it 'registers a user successfully' do
+        expect { find('input[name="commit"]').click }.to change(User, :count).by(1)
       end
     end
 
     context 'when Form is invalid' do
-      it 'Failed user registration' do
+      before do
         visit new_user_registration_path
         fill_in 'user[name]', with: ''
         fill_in 'user[email]', with: 'user@invalid'
         fill_in 'user[password]', with: 'foo', match: :prefer_exact
         fill_in 'user[password_confirmation]', with: 'bar', match: :prefer_exact
+      end
+
+      it 'Failed user registration' do
         find('input[name="commit"]').click
         expect(page).to have_content('error')
       end

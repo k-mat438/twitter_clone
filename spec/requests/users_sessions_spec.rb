@@ -16,10 +16,9 @@ RSpec.describe 'UsersSessions', type: :request do
     let(:user) { FactoryBot.create(:user) }
 
     context 'with valid credentials' do
-      it 'Successfully logs in the user' do
+      it 'allows a user with valid credentials to log in' do
         post user_session_path, params: { user: { email: user.email, password: user.password } }
-        follow_redirect!
-        expect(response).to redirect_to(home_path(user))
+        expect(response).to redirect_to(home_path)
       end
     end
 
@@ -27,7 +26,7 @@ RSpec.describe 'UsersSessions', type: :request do
     context 'with invalid credentials' do
       it 'Failed logs in the user' do
         post user_session_path, params: { user: { email: 'invalid@example.com', password: 'invalid_password' } }
-        expect(response).not_to redirect_to(home_path)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
