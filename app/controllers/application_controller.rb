@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name email phone_number birth])
   end
 
-  def after_sign_in_path_for(resource)
-    home_path(resource)
+  def after_sign_in_path_for(_resource)
+    home_path
   end
 
   def set_target_post
